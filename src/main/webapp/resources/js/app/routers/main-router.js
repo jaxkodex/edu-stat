@@ -5,7 +5,9 @@
 define(['marionette'], function (Marionette) {
 	return Marionette.AppRouter.extend({
 		appRoutes: {
-			'test': 'runTestRoute'
+			'signup': 'showSignupForm',
+			'login': 'showLoginForm',
+			'home': 'showIndex'
 		}
 	});
 });

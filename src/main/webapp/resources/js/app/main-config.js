@@ -35,6 +35,8 @@ require(['main-app',
          'routers/main-router', 
          'controllers/main-controller'], function (app, Backbone, Router, controller) {
 	app.start();
+	console.log('asasd');
+	console.log(controller);
 	
 	new Router({controller: controller});
 	

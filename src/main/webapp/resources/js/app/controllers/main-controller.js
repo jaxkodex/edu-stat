@@ -3,13 +3,16 @@
  */
 
 
-define(['main-app'], function (app) {
+define(['main-app'], function (app, SignupView) {
 	return {
-		appIndex: function () {
-			app.vent.trigger('app:index');
+		showSignupForm: function () {
+			app.vent.trigger('app:signup');
 		},
-		runTestRoute: function () {
-			console.log('do route plz');
+		showLoginForm: function () {
+			app.vent.trigger('app:login');
+		},
+		showIndex: function () {
+			app.vent.trigger('app:index');
 		}
 	};
 });

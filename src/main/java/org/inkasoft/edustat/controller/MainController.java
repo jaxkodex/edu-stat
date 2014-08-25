@@ -1,4 +1,4 @@
-package org.inkasoft.edustat;
+package org.inkasoft.edustat.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

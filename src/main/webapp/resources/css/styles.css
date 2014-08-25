@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 body {
-	padding: 10px 0px;
+	padding: 0px 0px;
 }
 
 body:before { 
@@ -106,4 +106,15 @@ li > ul.list-unstyled > li.active a {
 }
 .login-box-body {
 	padding: 10px 10px;
+}
+
+/* index header */
+.index-header {
+	background-size: 100%;
+	background-size: cover;
+	vertical-align: top;
+	background-position: center center;
+	background-image: url(../img/bg.jpg);
+	height: 300px;
+	overflow: hidden;
 }
