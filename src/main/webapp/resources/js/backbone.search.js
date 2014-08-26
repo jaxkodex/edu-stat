@@ -2,7 +2,7 @@
  * 
  */
 
-define(['backbone', 'jquery'], function (Backbone, $) {
+define(['backbone', 'jquery', 'underscore'], function (Backbone, $, _) {
 	var Search = function (options) {
 		var me = this;
 		this.options = options;
@@ -46,7 +46,12 @@ define(['backbone', 'jquery'], function (Backbone, $) {
 	};
 	
 	Search.prototype.showResults = function () {
-		console.log('Result size: '+this.collection.size());
+		var me = this, container = document.createDocumentFragment();
+		this.collection.each(function (val) {
+			if (!_.isUndefined(me.options.template)) {
+				container.appendChild($(me.options.template(val))[0]);
+			}
+		});
 	};
 	
 	return Search;
