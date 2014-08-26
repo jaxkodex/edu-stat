@@ -12,6 +12,10 @@
 		<div class="col-sm-6 col-sm-offset-3">
 			<form>
 				<div class="form-group">
+					<label for="institucioneducativa">Institucion educativa</label>
+					<input type="text" class="form-control input-sm" id="institucioneducativa" />
+				</div>
+				<div class="form-group">
 					<label for="username">Usuario</label>
 					<input type="text" class="form-control input-sm" id="username" value="<%=username%>" />
 				</div>
@@ -24,19 +28,19 @@
 					<input type="password" class="form-control input-sm" id="password2" />
 				</div>
 				<div class="form-group">
-					<label for="pnombre">Primer Nombre</label>
+					<label for="pnombre">Primer nombre</label>
 					<input type="text" class="form-control input-sm" id="pnombre" value="<%=persona.primerNombre%>" />
 				</div>
 				<div class="form-group">
-					<label for="snombre">Segundo Nombre</label>
+					<label for="snombre">Segundo nombre</label>
 					<input type="text" class="form-control input-sm" id="snombre" value="<%=persona.segundoNombre%>" />
 				</div>
 				<div class="form-group">
-					<label for="apaterno">Apellido Paterno</label>
+					<label for="apaterno">Apellido paterno</label>
 					<input type="text" class="form-control input-sm" id="apaterno" value="<%=persona.aperllidoPaterno%>" />
 				</div>
 				<div class="form-group">
-					<label for="amaterno">Apellido Materno</label>
+					<label for="amaterno">Apellido materno</label>
 					<input type="text" class="form-control input-sm" id="amaterno" value="<%=persona.aperllidoMaterno%>" />
 				</div>
 				<div class="form-group">

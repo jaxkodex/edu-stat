@@ -39,4 +39,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuarioRepository.delete(username);
 	}
 
+	public List<Usuario> searchByUsername(String username) {
+		return usuarioRepository.searchByUsername(username);
+	}
+
 }
