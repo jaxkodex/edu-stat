@@ -19,6 +19,7 @@
 	<div class="container" style="padding-top: 20px;">
 		<div class="col-sm-12">
 			<input id="testme" type="text" class="form-control input-sm" placeholder="Type here" />
+			<div id="testme_results"></div>
 		</div>
 	</div>
 

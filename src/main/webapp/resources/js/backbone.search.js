@@ -8,6 +8,7 @@ define(['backbone', 'jquery', 'underscore'], function (Backbone, $, _) {
 		this.options = options;
 		
 		this.$el = $(options.el);
+		this.$renderEl = $(options.renderEl);
 		
 		this.$el.on('keyup', function (evt) {
 			me.search(me.$el.val());
@@ -49,9 +50,11 @@ define(['backbone', 'jquery', 'underscore'], function (Backbone, $, _) {
 		var me = this, container = document.createDocumentFragment();
 		this.collection.each(function (val) {
 			if (!_.isUndefined(me.options.template)) {
-				container.appendChild($(me.options.template(val))[0]);
+				var div = $('<div>');
+				container.appendChild(div.append($(me.options.template(val.toJSON()))[0])[0]);
 			}
 		});
+		this.$renderEl.empty().append(container);
 	};
 	
 	return Search;

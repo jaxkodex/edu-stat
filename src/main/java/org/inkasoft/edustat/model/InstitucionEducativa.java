@@ -14,9 +14,9 @@ public class InstitucionEducativa implements Serializable {
 	@Column(name="id_ie")
 	private Integer idInstitucionEducativa;
 	@Column(name="ie_codigo")
-	private String InstitucionEducativaCodigo;
+	private String institucionEducativaCodigo;
 	@Column(name="ie_nombre")
-	private String InstitucionEducativaNombre;
+	private String institucionEducativaNombre;
 	
 	public Integer getIdInstitucionEducativa() {
 		return idInstitucionEducativa;
@@ -25,15 +25,15 @@ public class InstitucionEducativa implements Serializable {
 		this.idInstitucionEducativa = idInstitucionEducativa;
 	}
 	public String getInstitucionEducativaCodigo() {
-		return InstitucionEducativaCodigo;
+		return institucionEducativaCodigo;
 	}
 	public void setInstitucionEducativaCodigo(String institucionEducativaCodigo) {
-		InstitucionEducativaCodigo = institucionEducativaCodigo;
+		this.institucionEducativaCodigo = institucionEducativaCodigo;
 	}
 	public String getInstitucionEducativaNombre() {
-		return InstitucionEducativaNombre;
+		return institucionEducativaNombre;
 	}
 	public void setInstitucionEducativaNombre(String institucionEducativaNombre) {
-		InstitucionEducativaNombre = institucionEducativaNombre;
+		this.institucionEducativaNombre = institucionEducativaNombre;
 	}
 }

@@ -5,13 +5,16 @@
 
 define(['marionette', 
         'collections/usuario-collection', 
+        'collections/institucioneducativa-collection', 
         'views/main-index', 
         'views/main-footer',
         'views/main-signup',
         'views/main-login'], function (Marionette, 
-        		UserCollection, 
+        		UserCollection, InstitucionEducativaCollection,
         		IndexView, FooterView, SignupView, LoginView) {
-	var app = new Marionette.Application (), userCollection = new UserCollection;
+	var app = new Marionette.Application (), 
+		userCollection = new UserCollection,
+		institucionEducativaCollection = new InstitucionEducativaCollection;
 	
 	app.addRegions({
 		header: '#header',
@@ -27,6 +30,7 @@ define(['marionette',
 	app.vent.on('app:signup', function () {
 		userCollection.reset({});
 		app.main.show(new SignupView({
+			institucionEducativaCollection: institucionEducativaCollection,
 			model: userCollection.at(0)
 		}));
 	});

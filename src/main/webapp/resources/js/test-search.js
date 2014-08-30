@@ -34,9 +34,11 @@ require(['backbone.search'], function (Search) {
 	});
 	var s = new Search({
 		el: '#testme',
+		renderEl: '#testme_results',
 		collection: new UsuarioCollection,
 		callback: function (data) {
 			console.log('This a test callback');
-		}
+		},
+		template: _.template('<b><%=username%></b>')
 	});
 });
