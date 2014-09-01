@@ -118,3 +118,15 @@ li > ul.list-unstyled > li.active a {
 	height: 300px;
 	overflow: hidden;
 }
+
+/* Message box */
+.message-box {
+	padding: 10px 20px;
+	border: solid 1px;
+	margin-top: 10px;
+	margin-bottom: 7px;
+	border-radius: 3px;
+}
+.bg-success.message-box {
+	border-color: #B2C0AD;
+}

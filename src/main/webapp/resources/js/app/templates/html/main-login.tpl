@@ -10,14 +10,14 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
-			<form>
+			<form action="/edustat/j_spring_security_check" method="POST">
 				<div class="form-group">
 					<label for="username">Usuario</label>
-					<input type="text" class="form-control input-sm" id="username" />
+					<input name="username" type="text" class="form-control input-sm" id="username" />
 				</div>
 				<div class="form-group">
 					<label for="password">Contraseña</label>
-					<input type="password" class="form-control input-sm" id="password" />
+					<input name="password" type="password" class="form-control input-sm" id="password" />
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12 text-right">

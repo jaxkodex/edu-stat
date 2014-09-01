@@ -19,10 +19,9 @@ public class Usuario implements Serializable {
 	
 	@Id
 	private String username;
-	@JsonIgnore
 	private String password;
 	@ManyToOne
-	@JoinColumn(name="persona_id_persona")
+	@JoinColumn(name="persona_persona_dni")
 	private Persona persona;
 	@ManyToOne
 	@JoinColumn(name="institucion_educativa_id_ie")
@@ -34,6 +33,7 @@ public class Usuario implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}

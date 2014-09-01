@@ -1,5 +1,7 @@
 package org.inkasoft.edustat.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,11 +12,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="persona")
 @NamedQuery(name="Persona.findAll", query="SELECT i FROM Persona i")
-public class Persona {
+public class Persona implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue
-	@Column(name="id_persona")
-	private Integer idPersona;
+	@Column(name="persona_dni")
+	private String dni;
 	@Column(name="persona_pnombre")
 	private String primerNombre;
 	@Column(name="persona_snombre")
@@ -23,15 +26,7 @@ public class Persona {
 	private String apellidoPaterno;
 	@Column(name="persona_amaterno")
 	private String apellidoMaterno;
-	@Column(name="persona_dni")
-	private String dni;
-	
-	public Integer getIdPersona() {
-		return idPersona;
-	}
-	public void setIdPersona(Integer idPersona) {
-		this.idPersona = idPersona;
-	}
+
 	public String getprimerNombre() {
 		return primerNombre;
 	}

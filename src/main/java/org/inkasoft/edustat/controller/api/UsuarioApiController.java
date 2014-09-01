@@ -24,10 +24,12 @@ public class UsuarioApiController {
 
 	@RequestMapping(value="/public/api/usuario/{username}", method=RequestMethod.PUT)
 	@ResponseBody
-	public Usuario create (@RequestBody Usuario usuario, @RequestParam(required=false, defaultValue="create") String action) throws Exception {
-		if (action.equals("create")) {
+	public Usuario updateOrCreate (@RequestBody Usuario usuario) throws Exception {
+		Usuario existingUser = usuarioService.loadById(usuario.getUsername());
+		if (existingUser == null) {
 			return usuarioService.create(usuario);
 		}
+		// TODO Otherwhise do validation of logged in user and its information
 		return usuarioService.update(usuario);
 	}
 }

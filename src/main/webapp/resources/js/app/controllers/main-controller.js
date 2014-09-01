@@ -3,16 +3,33 @@
  */
 
 
-define(['main-app'], function (app, SignupView) {
+define(['main-app',
+        'collections/usuario-collection', 
+        'collections/institucioneducativa-collection', 
+        'views/main-index', 
+        'views/main-signup',
+        'views/main-login'], function (app,
+        		UserCollection, InstitucionEducativaCollection,
+        		IndexView, 	SignupView, LoginView) {
+	var userCollection = new UserCollection,
+	institucionEducativaCollection = new InstitucionEducativaCollection;
+	
 	return {
 		showSignupForm: function () {
-			app.vent.trigger('app:signup');
+			userCollection.reset({});
+			app.main.show(new SignupView({
+				institucionEducativaCollection: institucionEducativaCollection,
+				model: userCollection.at(0)
+			}));
 		},
 		showLoginForm: function () {
-			app.vent.trigger('app:login');
+			userCollection.reset({});
+			app.main.show(new LoginView({
+				model: userCollection.at(0)
+			}));
 		},
 		showIndex: function () {
-			app.vent.trigger('app:index');
+			app.main.show(new IndexView);
 		}
 	};
 });

@@ -7,7 +7,8 @@ define(['marionette'], function (Marionette) {
 		appRoutes: {
 			'signup': 'showSignupForm',
 			'login': 'showLoginForm',
-			'home': 'showIndex'
+			'home': 'showIndex',
+			'': 'showIndex'
 		}
 	});
 });

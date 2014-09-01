@@ -9,6 +9,10 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="bg-success message-box text-success hidden">
+			<h4>Usuario Registrado!</h4>
+			<p>Ahora puede <a href="#login">ingresar</a>.</p>
+		</div>
 		<div class="col-sm-6 col-sm-offset-3">
 			<form>
 				<div class="form-group">
