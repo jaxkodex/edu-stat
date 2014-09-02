@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.inkasoft.edustat.model.Persona;
 import org.inkasoft.edustat.model.Usuario;
 import org.inkasoft.edustat.repository.PersonaRepository;
 import org.inkasoft.edustat.repository.UsuarioRepository;
 import org.inkasoft.edustat.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -29,7 +31,12 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 		if (usr != null) {
 			throw new Exception("Usuario ya existe");
 		}
-		personaRepository.save(usuario.getPersona());
+		Persona persona = personaRepository.findOne(usuario.getPersona().getDni());
+		if (persona == null) {
+			personaRepository.save(usuario.getPersona());
+		}
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		usuario.setPassword(encoder.encodePassword(usuario.getPassword(), ""));
 		return usuarioRepository.save(usuario);
 	}
 

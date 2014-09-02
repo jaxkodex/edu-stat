@@ -10,7 +10,7 @@
   	<import resource="edustat-servlet.xml" />
 	
 	<security:http auto-config="true" use-expressions="true" authentication-manager-ref="authenticationManager">
-		<security:intercept-url pattern="/api/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/private/api/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/app/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/**" access="permitAll" />
 

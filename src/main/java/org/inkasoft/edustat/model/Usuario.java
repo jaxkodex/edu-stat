@@ -10,6 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="usuario")
@@ -37,6 +38,7 @@ public class Usuario implements Serializable {
 	public String getPassword() {
 		return password;
 	}
+	@JsonProperty(value="password")
 	public void setPassword(String password) {
 		this.password = password;
 	}

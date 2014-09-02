@@ -22,7 +22,7 @@ public class InstitucionEducativaApiController {
 		return institucionEducativaService.findAll();
 	}
 	
-	@RequestMapping(value="/public/api/institucioneducativa", method=RequestMethod.POST)
+	@RequestMapping(value="/private/api/institucioneducativa", method=RequestMethod.POST)
 	@ResponseBody
 	public InstitucionEducativa create (@RequestBody InstitucionEducativa institucionEducativa) throws Exception {
 		return institucionEducativaService.create(institucionEducativa);
