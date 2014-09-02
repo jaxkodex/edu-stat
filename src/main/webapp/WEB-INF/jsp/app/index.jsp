@@ -11,10 +11,17 @@
 	<!-- link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/backbone.modal.css" -->
 	<title>EduStat - Estadísticas en tu IE</title>
 	<script type="text/javascript">
-		var baseUrl = '${pageContext.request.contextPath}/api/';
+		var baseUrl = '${pageContext.request.contextPath}/private/api/';
 	</script>
 </head>
 <body>
-Welcome!
+	<div class="container">
+		<div class="row">
+			<div id="menu-wrapper" class="col-sm-2">Menu</div>
+			<div id="main" class="col-sm-10">Contents</div>
+		</div>
+	</div>
+
+	<script data-main="${pageContext.request.contextPath}/resources/js/app/web-config.js" src="${pageContext.request.contextPath}/resources/js/require.js"></script>
 </body>
 </html>

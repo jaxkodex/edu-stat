@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SessionApiController {
 	
-	@RequestMapping(value="/private/session", method=RequestMethod.GET)
+	@RequestMapping(value="/private/api/session", method=RequestMethod.GET)
 	@ResponseBody
 	public Usuario getSession (HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -20,7 +20,7 @@ public class SessionApiController {
 		return usuario;
 	}
 
-	@RequestMapping(value="/private/session/{sessionId}", method=RequestMethod.GET)
+	@RequestMapping(value="/private/api/session/{sessionId}", method=RequestMethod.GET)
 	@ResponseBody
 	public Usuario getSessionModel (HttpServletRequest request) {
 		return getSession(request);
