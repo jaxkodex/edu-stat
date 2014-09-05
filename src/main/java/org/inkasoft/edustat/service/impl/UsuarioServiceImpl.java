@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.inkasoft.edustat.model.Persona;
+import org.inkasoft.edustat.model.Rol;
 import org.inkasoft.edustat.model.Usuario;
 import org.inkasoft.edustat.repository.PersonaRepository;
 import org.inkasoft.edustat.repository.UsuarioRepository;
@@ -71,7 +72,9 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 		}
 		logger.debug("Logged in!");
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		for (Rol rol : usuario.getRoles()) {
+			authorities.add(new SimpleGrantedAuthority(rol.getRolName()));
+		}
 		User user = new User(usuario.getUsername(), usuario.getPassword(), authorities);
 		return user;
 	}

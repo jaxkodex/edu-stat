@@ -1,10 +1,14 @@
 package org.inkasoft.edustat.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,6 +31,13 @@ public class Usuario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="institucion_educativa_id_ie")
 	private InstitucionEducativa institucionEducativa;
+	@JsonIgnore
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="usuario_has_rol", 
+			joinColumns = @JoinColumn(name="username"),
+			inverseJoinColumns = @JoinColumn(name="id_rol")
+	)
+	private List<Rol> roles;
 	
 	public String getUsername() {
 		return username;
@@ -53,5 +64,17 @@ public class Usuario implements Serializable {
 	}
 	public void setInstitucionEducativa(InstitucionEducativa institucionEducativa) {
 		this.institucionEducativa = institucionEducativa;
+	}
+	/**
+	 * @return the roles
+	 */
+	public List<Rol> getRoles() {
+		return roles;
+	}
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 }
