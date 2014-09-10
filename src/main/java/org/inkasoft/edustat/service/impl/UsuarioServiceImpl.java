@@ -70,10 +70,11 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 			logger.debug("Usuario no encontrado");
 			throw new UsernameNotFoundException("El usuario no existe");
 		}
-		logger.debug("Logged in!");
+		logger.info("Logged in!"+usuario.getUsername()+" with roles "+usuario.getRoles());
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (Rol rol : usuario.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(rol.getRolName()));
+			authorities.add(new SimpleGrantedAuthority(rol.getRolName().trim()));
+			logger.info("Granting rol: "+rol.getRolName());
 		}
 		User user = new User(usuario.getUsername(), usuario.getPassword(), authorities);
 		return user;

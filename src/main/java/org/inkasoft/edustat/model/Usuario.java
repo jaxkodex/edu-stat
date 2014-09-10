@@ -11,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,20 +26,23 @@ public class Usuario implements Serializable {
 	@Id
 	private String username;
 	private String password;
+	
 	@ManyToOne
 	@JoinColumn(name="persona_persona_dni")
 	private Persona persona;
+	
 	@ManyToOne
 	@JoinColumn(name="institucion_educativa_id_ie")
 	private InstitucionEducativa institucionEducativa;
+	
 	@JsonIgnore
-	@ManyToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="usuario_has_rol", 
-			joinColumns = @JoinColumn(name="username"),
-			inverseJoinColumns = @JoinColumn(name="id_rol")
+			joinColumns = @JoinColumn(name="usuario_username", referencedColumnName="username"),
+			inverseJoinColumns = @JoinColumn(name="rol_id_rol", referencedColumnName="id_rol")
 	)
 	private List<Rol> roles;
-	
+		
 	public String getUsername() {
 		return username;
 	}

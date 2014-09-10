@@ -37,7 +37,7 @@ public class AuthSuccessFilter extends SimpleUrlAuthenticationSuccessHandler { /
 		String username = auth.getName();
 		Usuario usuario = usuarioService.loadById(username);
 		session.setAttribute("usuario", usuario);
-		logger.info("Data saved to session "+usuario.getUsername()+" should redirect to "+this.getDefaultTargetUrl());
+		logger.info("Data saved to session "+usuario.getUsername()+" should redirect to "+this.getDefaultTargetUrl()+" -> "+usuario.getRoles());
 		super.onAuthenticationSuccess(request, response, auth);
 	}
 	
