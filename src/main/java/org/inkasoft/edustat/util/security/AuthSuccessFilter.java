@@ -12,6 +12,7 @@ import org.inkasoft.edustat.model.Usuario;
 import org.inkasoft.edustat.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -37,7 +38,12 @@ public class AuthSuccessFilter extends SimpleUrlAuthenticationSuccessHandler { /
 		String username = auth.getName();
 		Usuario usuario = usuarioService.loadById(username);
 		session.setAttribute("usuario", usuario);
-		logger.info("Data saved to session "+usuario.getUsername()+" should redirect to "+this.getDefaultTargetUrl()+" -> "+usuario.getRoles());
+		logger.debug("Data saved to session "+usuario.getUsername()+" should redirect to "+this.getDefaultTargetUrl());
+		logger.debug("Authorities "+usuario.getRols());
+		logger.debug("Authorities "+auth.getAuthorities());
+		for (GrantedAuthority a : auth.getAuthorities()) {
+			logger.debug("Granted: "+a.getAuthority());
+		}
 		super.onAuthenticationSuccess(request, response, auth);
 	}
 	

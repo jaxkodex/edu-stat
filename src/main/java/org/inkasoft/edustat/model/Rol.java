@@ -1,51 +1,111 @@
 package org.inkasoft.edustat.model;
 
 import java.io.Serializable;
+
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
+/**
+ * The persistent class for the rol database table.
+ * 
+ */
 @Entity
 @Table(name="rol")
-@NamedQuery(name="Rol.findAll", query="SELECT u FROM Rol u")
+@NamedQuery(name="Rol.findAll", query="SELECT r FROM Rol r")
 public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_rol")
-	private Integer idRol;
+	private int idRol;
+
 	@Column(name="rol_name")
 	private String rolName;
-	
-	/**
-	 * @return the idRol
-	 */
-	public Integer getIdRol() {
-		return idRol;
+
+	//bi-directional many-to-one association to RolHasMenu
+	/*@OneToMany(mappedBy="rol")
+	private List<RolHasMenu> rolHasMenus;*/
+
+	//bi-directional many-to-many association to Menu
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+		name="rol_has_menu"
+		, joinColumns={
+			@JoinColumn(name="rol_id_rol")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="menu_id_menu")
+			}
+		)
+	private List<Menu> menus;
+
+	//bi-directional many-to-many association to Usuario
+	@JsonIgnore
+	@ManyToMany(mappedBy="rols")
+	private List<Usuario> usuarios;
+
+	public Rol() {
 	}
-	/**
-	 * @param idRol the idRol to set
-	 */
-	public void setIdRol(Integer idRol) {
+
+	public int getIdRol() {
+		return this.idRol;
+	}
+
+	public void setIdRol(int idRol) {
 		this.idRol = idRol;
 	}
-	/**
-	 * @return the rolName
-	 */
+
 	public String getRolName() {
-		return rolName;
+		return this.rolName;
 	}
-	/**
-	 * @param rolName the rolName to set
-	 */
+
 	public void setRolName(String rolName) {
 		this.rolName = rolName;
 	}
+
+	/*public List<RolHasMenu> getRolHasMenus() {
+		return this.rolHasMenus;
+	}
+
+	public void setRolHasMenus(List<RolHasMenu> rolHasMenus) {
+		this.rolHasMenus = rolHasMenus;
+	}*/
+
+	/*public RolHasMenu addRolHasMenus(RolHasMenu rolHasMenus) {
+		getRolHasMenus().add(rolHasMenus);
+		rolHasMenus.setRol(this);
+
+		return rolHasMenus;
+	}
+
+	public RolHasMenu removeRolHasMenus(RolHasMenu rolHasMenus) {
+		getRolHasMenus().remove(rolHasMenus);
+		rolHasMenus.setRol(null);
+
+		return rolHasMenus;
+	}*/
+
+	public List<Menu> getMenus() {
+		return this.menus;
+	}
+
+	public void setMenus(List<Menu> menus) {
+		if (menus == null) menus = new ArrayList<Menu>();
+		this.menus = menus;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 }

@@ -32,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 		if (usr != null) {
 			throw new Exception("Usuario ya existe");
 		}
-		Persona persona = personaRepository.findOne(usuario.getPersona().getDni());
+		Persona persona = personaRepository.findOne(usuario.getPersona().getPersonaDni());
 		if (persona == null) {
 			personaRepository.save(usuario.getPersona());
 		}
@@ -63,20 +63,20 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		logger.debug("Usuario buscando ser loggeado: *"+String.format("%-12s", username)+"*");
-		Usuario usuario = this.loadById(String.format("%-12s", username));
+		logger.debug("Usuario buscando ser loggeado: *"+username+"*");
+		Usuario usuario = this.loadById(username);
 		logger.debug("Usuario: "+usuario);
 		if (usuario == null) {
 			logger.debug("Usuario no encontrado");
 			throw new UsernameNotFoundException("El usuario no existe");
 		}
-		logger.info("Logged in!"+usuario.getUsername()+" with roles "+usuario.getRoles());
+		logger.debug("Logged in!"+usuario.getUsername()+" with roles "+usuario.getRols());
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (Rol rol : usuario.getRoles()) {
+		for (Rol rol : usuario.getRols()) {
 			authorities.add(new SimpleGrantedAuthority(rol.getRolName().trim()));
-			logger.info("Granting rol: "+rol.getRolName());
+			logger.debug("Granting rol: "+rol.getRolName());
 		}
-		User user = new User(usuario.getUsername(), usuario.getPassword(), authorities);
+		User user = new User(usuario.getUsername().trim(), usuario.getPassword().trim(), authorities);
 		return user;
 	}
 

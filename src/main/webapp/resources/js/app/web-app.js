@@ -7,11 +7,9 @@ define(['marionette'], function (Marionette) {
 	var app = new Marionette.Application ();
 	
 	app.addRegions({
-		menuwrapper: '#menu-wrapper',
-		main: '#main'
-	});
-	
-	app.addInitializer(function () { 
+		menuWrapper: '#menu-wrapper',
+		main: '#main',
+		topbar: '#top-bar'
 	});
 	
 	return window.app = app;

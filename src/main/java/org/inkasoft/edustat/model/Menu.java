@@ -1,104 +1,106 @@
 package org.inkasoft.edustat.model;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/**
+ * The persistent class for the menu database table.
+ * 
+ */
 @Entity
 @Table(name="menu")
-@NamedQuery(name="Menu.findAll", query="SELECT u FROM Menu u")
+@NamedQuery(name="Menu.findAll", query="SELECT m FROM Menu m")
 public class Menu implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_menu")
-	private Integer idMenu;
+	private int idMenu;
+
 	@Column(name="menu_nombre")
 	private String menuNombre;
+
 	@Column(name="menu_ruta")
 	private String menuRuta;
-	//private List<Menu> childMenus;
+
+	//bi-directional many-to-one association to Menu
 	@ManyToOne
-	@JoinColumn(name="menu_id_menu")
-	private Menu parentMenu;
-	@JsonIgnore
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="rol_has_menu", 
-			joinColumns = @JoinColumn(name="menu_id_menu"),
-			inverseJoinColumns = @JoinColumn(name="rol_id_rol")
-	)
-	private List<Rol> roles;
-	
-	/**
-	 * @return the idMenu
-	 */
-	public Integer getIdMenu() {
-		return idMenu;
+	private Menu menu;
+
+	//bi-directional many-to-one association to Menu
+	@OneToMany(mappedBy="menu")
+	private List<Menu> menus;
+
+	//bi-directional many-to-many association to Rol
+	@ManyToMany(mappedBy="menus")
+	private List<Rol> rols;
+
+	public Menu() {
 	}
-	/**
-	 * @param idMenu the idMenu to set
-	 */
-	public void setIdMenu(Integer idMenu) {
+
+	public int getIdMenu() {
+		return this.idMenu;
+	}
+
+	public void setIdMenu(int idMenu) {
 		this.idMenu = idMenu;
 	}
-	/**
-	 * @return the menuNombre
-	 */
+
 	public String getMenuNombre() {
-		return menuNombre;
+		return this.menuNombre;
 	}
-	/**
-	 * @param menuNombre the menuNombre to set
-	 */
+
 	public void setMenuNombre(String menuNombre) {
 		this.menuNombre = menuNombre;
 	}
-	/**
-	 * @return the menuRuta
-	 */
+
 	public String getMenuRuta() {
-		return menuRuta;
+		return this.menuRuta;
 	}
-	/**
-	 * @param menuRuta the menuRuta to set
-	 */
+
 	public void setMenuRuta(String menuRuta) {
 		this.menuRuta = menuRuta;
 	}
-	/**
-	 * @return the parentMenu
-	 */
-	public Menu getParentMenu() {
-		return parentMenu;
+
+	public Menu getMenu() {
+		return this.menu;
 	}
-	/**
-	 * @param parentMenu the parentMenu to set
-	 */
-	public void setParentMenu(Menu parentMenu) {
-		this.parentMenu = parentMenu;
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
-	/**
-	 * @return the roles
-	 */
-	public List<Rol> getRoles() {
-		return roles;
+
+	public List<Menu> getMenus() {
+		return this.menus;
 	}
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
+
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
 	}
+
+	public Menu addMenus(Menu menus) {
+		getMenus().add(menus);
+		menus.setMenu(this);
+
+		return menus;
+	}
+
+	public Menu removeMenus(Menu menus) {
+		getMenus().remove(menus);
+		menus.setMenu(null);
+
+		return menus;
+	}
+
+	public List<Rol> getRols() {
+		return this.rols;
+	}
+
+	public void setRols(List<Rol> rols) {
+		this.rols = rols;
+	}
+
 }

@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 body {
-	padding: 0px 0px;
+	/*padding: 0px 0px;*/
 }
 
 body:before { 
@@ -76,7 +76,10 @@ body:before {
 }
 .custom-nav li.active > a,
 .custom-nav li > a:hover,
-.custom-nav li.active > a:hover {
+.custom-nav li.active > a:hover,
+.nav-pills > li.active > a, 
+.nav-pills > li.active > a:hover, 
+.nav-pills > li.active > a:focus {
 	background: transparent;
 	color: #2a6496;
 }

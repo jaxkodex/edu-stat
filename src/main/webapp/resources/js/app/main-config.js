@@ -33,10 +33,12 @@ require.config({
 require(['main-app', 
          'backbone', 
          'routers/main-router', 
-         'controllers/main-controller'], function (app, Backbone, Router, controller) {
+         'controllers/main-controller'], function (app, Backbone, MainRouter, mainController) {
+	app.addInitializer(function () {
+		new MainRouter({controller: mainController});
+		
+		Backbone.history.start();
+	});
+	
 	app.start();
-	
-	new Router({controller: controller});
-	
-	Backbone.history.start();
 });

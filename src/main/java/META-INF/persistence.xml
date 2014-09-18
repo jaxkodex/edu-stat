@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="edu-stat">
+		<class>org.inkasoft.edustat.model.Area</class>
+		<class>org.inkasoft.edustat.model.AreaHasDocente</class>
+		<class>org.inkasoft.edustat.model.AreaHasDocentePK</class>
+		<class>org.inkasoft.edustat.model.Clase</class>
+		<class>org.inkasoft.edustat.model.ConclusionEvaluacion</class>
+		<class>org.inkasoft.edustat.model.CriterioFormato</class>
+		<class>org.inkasoft.edustat.model.Docente</class>
+		<class>org.inkasoft.edustat.model.EvaluacionDocente</class>
+		<class>org.inkasoft.edustat.model.Evaluador</class>
+		<class>org.inkasoft.edustat.model.FormatoFichaEvaluacion</class>
+		<class>org.inkasoft.edustat.model.Grado</class>
+		<class>org.inkasoft.edustat.model.InstitucionEducativa</class>
+		<class>org.inkasoft.edustat.model.InstitucionEducativaHasDocente</class>
+		<class>org.inkasoft.edustat.model.InstitucionEducativaHasDocentePK</class>
+		<class>org.inkasoft.edustat.model.Menu</class>
+		<class>org.inkasoft.edustat.model.Monitoreo</class>
+		<class>org.inkasoft.edustat.model.Nivel</class>
+		<class>org.inkasoft.edustat.model.OpcionFormato</class>
+		<class>org.inkasoft.edustat.model.PeriodoAcademico</class>
+		<class>org.inkasoft.edustat.model.Persona</class>
+		<class>org.inkasoft.edustat.model.ResultadoEvaluacion</class>
+		<class>org.inkasoft.edustat.model.Rol</class>
+		<class>org.inkasoft.edustat.model.RolHasMenu</class>
+		<class>org.inkasoft.edustat.model.RolHasMenuPK</class>
+		<class>org.inkasoft.edustat.model.Seccion</class>
+		<class>org.inkasoft.edustat.model.SeccionFormato</class>
+		<class>org.inkasoft.edustat.model.Turno</class>
+		<class>org.inkasoft.edustat.model.Usuario</class>
+	</persistence-unit>
+</persistence>
