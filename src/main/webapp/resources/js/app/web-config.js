@@ -27,7 +27,8 @@ require.config({
 		bootstrap: '../bootstrap.min',
 		marionette: '../backbone.marionette',
 		tpl: '../tpl'
-	}
+	},
+	urlArgs: "bust=" + (new Date()).getTime()
 });
 
 require(['web-app',

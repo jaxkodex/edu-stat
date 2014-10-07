@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/loadingbar.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/app-styles.css">
 	<!-- link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/backbone.modal.css" -->
 	<title>EduStat - Estadísticas en tu IE</title>
 	<script type="text/javascript">
@@ -17,10 +18,10 @@
 	</script>
 </head>
 <body>
-	<div class="container">
+	<div id="main-container" class="container-fluid">
 		<div class="row">
-			<div id="menu-wrapper" class="col-sm-3"></div>
-			<div class="col-sm-9">
+			<div id="menu-wrapper" class="col-sm-2"></div>
+			<div class="col-sm-10">
 				<div class="row">
 					<div id="top-bar" class="col-sm-12"></div>
 					<div id="main" class="col-sm-12"></div>

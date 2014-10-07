@@ -46,7 +46,7 @@
 						<div class="col-sm-12">
 							<label>Correo Electrónico</label>
 							<input type="text" class="form-control input-sm edit" value="" />
-							<p class="form-control-static hidden_on_editing">admin@example.com</p>
+							<p class="form-control-static hidden_on_editing"></p>
 						</div>
 					</div>
 				</div>

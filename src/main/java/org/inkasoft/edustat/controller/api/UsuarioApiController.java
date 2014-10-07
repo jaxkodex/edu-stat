@@ -28,7 +28,7 @@ public class UsuarioApiController {
 		return usuarioService.searchByUsername(query);
 	}
 
-	@RequestMapping(value="/public/api/usuario/{username}", method=RequestMethod.PUT)
+	@RequestMapping(value="/private/api/usuario/{username}", method=RequestMethod.PUT)
 	@ResponseBody
 	public Usuario updateOrCreate (@RequestBody Usuario usuario,
 			HttpServletRequest request) throws Exception {
@@ -53,7 +53,8 @@ public class UsuarioApiController {
 		
 		// By now we will only update user persona.
 		// Trying to register some other DNI, let's verify if someone else registered it already
-		if (!sessionUser.getPersona().getPersonaDni().equals(usuario.getPersona().getPersonaDni())) {
+		if (usuario.getPersona().getPersonaDni() != null && 
+				!sessionUser.getPersona().getPersonaDni().equals(usuario.getPersona().getPersonaDni())) {
 			persona = personaService.loadByDni(usuario.getPersona().getPersonaDni());
 			if (persona != null) {
 				throw new Exception("La numero de DNI con el que desea registrarse, ya se encuentra,"
@@ -68,6 +69,14 @@ public class UsuarioApiController {
 		sessionUser.getPersona().setPersonaSnombre(usuario.getPersona().getPersonaSnombre());
 		personaService.update(sessionUser.getPersona());
 		
-		return usuarioService.update(usuario);
+		// The user him self should not be able to assing his roles
+		usuario.setRols(sessionUser.getRols());
+		usuario.setPersona(sessionUser.getPersona());
+		
+		sessionUser = usuarioService.update(usuario);
+		
+		session.setAttribute("usuario", sessionUser);
+		
+		return sessionUser;
 	}
 }
