@@ -72,6 +72,7 @@ public class UsuarioApiController {
 		// The user him self should not be able to assing his roles
 		usuario.setRols(sessionUser.getRols());
 		usuario.setPersona(sessionUser.getPersona());
+		usuario.setPassword(sessionUser.getPassword());
 		
 		sessionUser = usuarioService.update(usuario);
 		

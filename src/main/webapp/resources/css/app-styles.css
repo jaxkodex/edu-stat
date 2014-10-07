@@ -1,7 +1,4 @@
 @CHARSET "UTF-8";
-#main-container {
-	margin: 10px 0px;
-}
 #menu-wrapper ul {
 	border-radius: 5px;
 	overflow: hidden;
@@ -11,6 +8,10 @@
 #menu-wrapper ul li {
 	display: block-inline;
 	width: 100%;
+}
+#menu-wrapper ul li.title {
+	padding: 5px 8px;
+	border-bottom: 1px solid #d4d4d4;
 }
 #menu-wrapper ul li a {
 	display: block;
