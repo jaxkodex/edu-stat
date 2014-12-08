@@ -37,11 +37,13 @@ require(['web-app',
          'views/app-menu',
          'views/app-topbar',
          'routers/app-router',
-         'controllers/app-user-controller'], function (app, Backbone,
+         'routers/app-config-router',
+         'controllers/app-user-controller',
+         'controllers/app-config-controller'], function (app, Backbone,
         		 UserCollection, 
         		 AppMenuView, AppTopbarView,
-        		 AppRouter,
-        		 userController) {
+        		 AppRouter, AppConfigRouter,
+        		 userController, AppConfigController) {
 	app.addInitializer(function () {
 		// workspace initialization
 		this.collections = this.collection || {};
@@ -54,6 +56,8 @@ require(['web-app',
 	app.addInitializer(function () {
 		//Initialize all routers here
 		new AppRouter({controller: userController});
+		new AppConfigRouter({controller: AppConfigController});
+		
 		Backbone.history.start();
 	});
 	

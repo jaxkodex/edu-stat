@@ -9,7 +9,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/edustat"></jee:jndi-lookup>
+	<!-- jee:jndi-lookup id="dataSource" jndi-name="jdbc/edustat"></jee:jndi-lookup -->
 
 	<jpa:repositories base-package="org.inkasoft.edustat.repository" />
 	
@@ -29,13 +29,13 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 			</props>
 		</property>
 	</bean>
-<!-- 	<bean id="dataSource" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/edustats" /> -->
-<!-- 		<property name="username" value="root" /> -->
-<!-- 		<property name="password" value="root" /> -->
-<!-- 	</bean> -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/edustats" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>

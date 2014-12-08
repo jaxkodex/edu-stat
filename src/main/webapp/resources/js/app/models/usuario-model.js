@@ -1,10 +1,6 @@
-/**
- * 
- */
-
 define(['backbone'], function (Backbone) {
 	return Backbone.Model.extend({
-		idAttribute: 'username',
+		idAttribute: 'idDocente',
 		defaults: {
 			username: '',
 			persona: {
