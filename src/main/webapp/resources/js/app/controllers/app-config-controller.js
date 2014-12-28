@@ -1,11 +1,20 @@
 define(['web-app',
-        'models/institucioneducativa-model', 'models/docente-model',
-        'collections/docente-collection',
-        'views/app-ie', 'views/app-docentelist', 'views/app-docenteform'], function (app,
-        		InstitucionEducativaModel, DocenteModel,
-        		DocenteCollection,
-        		IeDataView, DocenteListView, DocenteFormView) {
-	var docenteCollection = new DocenteCollection;
+        'models/institucioneducativa-model', 'models/docente-model', 'models/nivel-model',
+        'models/grado-model',
+        'collections/docente-collection', 'collections/nivel-collection',
+        'collections/grado-collection', 
+        'views/app-ie', 'views/app-docentelist', 'views/app-docenteform', 'views/app-nivel',
+        'views/app-grado'], function (app,
+        		InstitucionEducativaModel, DocenteModel, NivelModel,
+        		GradoModel,
+        		DocenteCollection, NivelCollection,
+        		GradoCollection,
+        		IeDataView, DocenteListView, DocenteFormView, NivelView,
+        		GradoView) {
+	var docenteCollection, nivelCollection;
+	
+	docenteCollection = new DocenteCollection;
+	nivelCollection = new NivelCollection;
 	
 	return {
 		showIePage: function () {
@@ -35,6 +44,28 @@ define(['web-app',
 				model: model
 			});
 			app.main.show(view);
+		},
+		showNivelView: function () {
+			nivelCollection.fetch({
+				reset: true,
+				success: function () {
+					var view = new NivelView({
+						collection: nivelCollection
+					});
+					app.main.show(view);
+				}
+			});
+		},
+		showGradoView: function () {
+			nivelCollection.fetch({
+				reset: true,
+				success: function () {
+					var view = new GradoView({
+						collection: nivelCollection
+					});
+					app.main.show(view);
+				}
+			});
 		}
 	};
 });

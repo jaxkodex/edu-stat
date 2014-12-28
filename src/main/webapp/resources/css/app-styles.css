@@ -1,1 +1,7 @@
 @CHARSET "UTF-8";
+.edit, .editing .view {
+	display: none;
+}
+.editing .edit {
+	display: block;
+}

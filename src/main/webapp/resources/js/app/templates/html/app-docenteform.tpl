@@ -23,7 +23,21 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="persona-personaPnombre">Primer Nombre</label>
+				<input class="form-control input-sm" type="text" name="persona-personaPnombre" id="persona-personaPnombre" value="<%=persona.personaPnombre%>" />
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="persona-personaSnombre">Segundo Nombre</label>
+				<input class="form-control input-sm" type="text" name="persona-personaSnombre" id="persona-personaSnombre" value="<%=persona.personaSnombre%>" />
+			</div>
+		</div>
+	</div>
 	<div class="clearfix">
-		<button class="btn btn-primary">Guardar</button>
+		<button type="submit" class="btn btn-primary">Guardar</button>
 	</div>
 </form>

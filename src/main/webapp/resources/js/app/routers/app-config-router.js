@@ -3,7 +3,9 @@ define(['marionette'], function (Marionette) {
 		appRoutes: {
 			'ie': 'showIePage',
 			'config/docentes': 'showDocenteList',
-			'config/docente/new': 'showNewDocenteForm'
+			'config/docente/new': 'showNewDocenteForm',
+			'config/nivel': 'showNivelView',
+			'config/grado': 'showGradoView'
 		}
 	});
 });

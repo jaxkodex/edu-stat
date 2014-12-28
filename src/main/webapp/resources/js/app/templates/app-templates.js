@@ -9,6 +9,12 @@ define(function (require) {
 		mantenimientoDocenteItemListTemplate: require('tpl!templates/html/app-docenteitemlist.tpl'),
 		mantenimientoDocenteFormTemplate: require('tpl!templates/html/app-docenteform.tpl'),
 		
+		// Niveles
+		mantenimientoNivelListTemplate: require('tpl!templates/html/app-nivellist.tpl'),
+		
+		// Grados
+		mantenimientoGradoListTemplate: require('tpl!templates/html/app-gradolist.tpl'),
+		
 		menuTemplate: require('tpl!templates/html/app-menu.tpl'),
 		topbarTemplate: require('tpl!templates/html/app-topbar.tpl'),
 		userprofileTemplate: require('tpl!templates/html/app-userprofile.tpl'),
