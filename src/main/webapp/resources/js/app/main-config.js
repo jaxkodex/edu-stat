@@ -21,12 +21,12 @@ require.config({
 		}
 	},
 	paths: {
-		jquery: '../jquery-1.11.1',
-		underscore: '../underscore',
-		backbone: '../backbone',
-		bootstrap: '../bootstrap.min',
-		marionette: '../backbone.marionette',
-		tpl: '../tpl'
+		jquery: '../libs/jquery-1.11.1',
+		underscore: '../libs/underscore',
+		backbone: '../libs/backbone',
+		bootstrap: '../libs/bootstrap.min',
+		marionette: '../libs/backbone.marionette',
+		tpl: '../libs/tpl'
 	}
 });
 

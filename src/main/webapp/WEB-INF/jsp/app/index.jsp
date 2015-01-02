@@ -30,6 +30,6 @@
 		</div>
 	</div>
 
-	<script data-main="${pageContext.request.contextPath}/resources/js/app/web-config.js" src="${pageContext.request.contextPath}/resources/js/require.js"></script>
+	<script data-main="${pageContext.request.contextPath}/resources/js/app/web-config.js" src="${pageContext.request.contextPath}/resources/js/libs/require.js"></script>
 </body>
 </html>

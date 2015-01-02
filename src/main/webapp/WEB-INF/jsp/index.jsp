@@ -25,7 +25,7 @@
 		</div>
 	</div>
 
-	<script data-main="${pageContext.request.contextPath}/resources/js/app/main-config.js" src="${pageContext.request.contextPath}/resources/js/require.js"></script>
+	<script data-main="${pageContext.request.contextPath}/resources/js/app/main-config.js" src="${pageContext.request.contextPath}/resources/js/libs/require.js"></script>
 	<!--
 			<div id="menu" class="col-sm-2"></div>
 			<div class="col-sm-10">

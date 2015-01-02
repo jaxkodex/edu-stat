@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 define(['backbone'], function (Backbone) {
 	return Backbone.Model.extend({
 		idAttribute: 'idInstitucionEducativa',
@@ -11,4 +7,4 @@ define(['backbone'], function (Backbone) {
 			institucionEducativaNombre: ''
 		}
 	});
-})
+});

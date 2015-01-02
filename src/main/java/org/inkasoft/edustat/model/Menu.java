@@ -28,6 +28,7 @@ public class Menu implements Serializable {
 
     //bi-directional many-to-one association to Menu
     @ManyToOne
+    @JoinColumn(name="menu_id_menu")
     private Menu menuPadre;
 
     //bi-directional many-to-one association to Menu

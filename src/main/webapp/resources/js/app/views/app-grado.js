@@ -1,9 +1,7 @@
 define(['marionette', 'templates/app-templates', 
         'collections/grado-collection'], function (Marionette, AppTemplates,
         		GradoCollection) {
-	var NivelItemView, gradoCollection;
-	
-	gradoCollection = new GradoCollection;
+	var NivelItemView;
 	
 	NivelItemView = Marionette.ItemView.extend({
 		template: _.template('<%=nivelNombre%>')

@@ -18,3 +18,5 @@ target/
 
 sonar-project.properties
 .sonar/
+
+src/main/webapp/WEB-INF/database.properties
