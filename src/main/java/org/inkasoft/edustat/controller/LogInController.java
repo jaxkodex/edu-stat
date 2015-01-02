@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LogInController {
-	
-	@RequestMapping(value="/auth/login")
-	public String login (@RequestParam(required=false) String error, Model model) {
-		model.addAttribute("error", error);
-		return "/auth/login";
-	}
+    
+    @RequestMapping(value="/auth/login")
+    public String login (@RequestParam(required=false) String error, Model model) {
+        model.addAttribute("error", error);
+        return "/auth/login";
+    }
 
 }

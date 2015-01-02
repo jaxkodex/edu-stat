@@ -1,8 +1,15 @@
 package org.inkasoft.edustat.service;
 
-import org.inkasoft.edustat.model.InstitucionEducativa;
-import org.inkasoft.edustat.util.BaseCrudService;
+import java.util.List;
 
-public interface InstitucionEducativaService extends BaseCrudService<InstitucionEducativa, Integer> {
+import org.inkasoft.edustat.model.InstitucionEducativa;
+
+public interface InstitucionEducativaService {
+    
+    public InstitucionEducativa create (InstitucionEducativa institucionEducativa);
+    public InstitucionEducativa loadById (Integer id);
+    public List<InstitucionEducativa> findAll ();
+    public InstitucionEducativa update (InstitucionEducativa institucionEducativa);
+    public void delete (Integer id);
 
 }

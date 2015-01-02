@@ -20,63 +20,74 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PlanCurricularController {
-	@Autowired PlanCurricularService planCurricularService;
-	
-	@RequestMapping(value={"/private/api/nivel"}, method=RequestMethod.GET)
-	public @ResponseBody List<NivelBean> listNivel () {
-		return planCurricularService.listAllNivel();
-	}
-	
-	@RequestMapping(value={"/private/api/nivel/{idNivel}"}, method=RequestMethod.GET)
-	public @ResponseBody NivelBean loadNivel (@PathVariable Integer idNivel) {
-		return planCurricularService.loadNivelById(idNivel);
-	}
-	
-	@RequestMapping(value={"/private/api/nivel"}, method=RequestMethod.POST)
-	public @ResponseBody NivelBean createNivel (@RequestBody Nivel nivel) {
-		return planCurricularService.createNivel(nivel);
-	}
-	
-	@RequestMapping(value={"/private/api/nivel/{idNivel}"}, method=RequestMethod.PUT)
-	public @ResponseBody NivelBean updateNivel (@RequestBody Nivel nivel) {
-		return planCurricularService.updateNivel(nivel);
-	}
-	
-	@RequestMapping(value={"/private/api/nivel/{idNivel}"}, method=RequestMethod.DELETE)
-	public @ResponseBody Map<String, Object> deleteNivel (@PathVariable Integer idNivel) {
-		Map<String, Object> m = new HashMap<String, Object>();
-		planCurricularService.deleteNivel(idNivel);
-		m.put("success", true);
-		return m;
-	}
-	
-	@RequestMapping(value={"/private/api/grado"}, method=RequestMethod.GET)
-	public @ResponseBody List<GradoBean> listGradoByNivel (@RequestParam(required=false) Integer idNivel) {
-		if (idNivel == null) return planCurricularService.listAllGrado();
-		return planCurricularService.listAllGrado(idNivel);
-	}
-	
-	@RequestMapping(value={"/private/api/grado/{idGrado}"}, method=RequestMethod.GET)
-	public @ResponseBody GradoBean loadGrado (@PathVariable Integer idGrado) {
-		return planCurricularService.loadGradoById(idGrado);
-	}
-	
-	@RequestMapping(value={"/private/api/grado"}, method=RequestMethod.POST)
-	public @ResponseBody GradoBean createGrado (@RequestBody Grado grado) {
-		return planCurricularService.createGrado(grado);
-	}
+    @Autowired PlanCurricularService planCurricularService;
+    
+    @RequestMapping(value={"/private/api/nivel"}, method=RequestMethod.GET)
+    @ResponseBody
+    public List<NivelBean> listNivel () {
+        return planCurricularService.listAllNivel();
+    }
+    
+    @RequestMapping(value={"/private/api/nivel/{idNivel}"}, method=RequestMethod.GET)
+    @ResponseBody
+    public NivelBean loadNivel (@PathVariable Integer idNivel) {
+        return planCurricularService.loadNivelById(idNivel);
+    }
+    
+    @RequestMapping(value={"/private/api/nivel"}, method=RequestMethod.POST)
+    @ResponseBody
+    public NivelBean createNivel (@RequestBody Nivel nivel) {
+        return planCurricularService.createNivel(nivel);
+    }
+    
+    @RequestMapping(value={"/private/api/nivel/{idNivel}"}, method=RequestMethod.PUT)
+    @ResponseBody
+    public NivelBean updateNivel (@RequestBody Nivel nivel) {
+        return planCurricularService.updateNivel(nivel);
+    }
+    
+    @RequestMapping(value={"/private/api/nivel/{idNivel}"}, method=RequestMethod.DELETE)
+    @ResponseBody
+    public Map<String, Object> deleteNivel (@PathVariable Integer idNivel) {
+        Map<String, Object> m = new HashMap<String, Object>();
+        planCurricularService.deleteNivel(idNivel);
+        m.put("success", true);
+        return m;
+    }
+    
+    @RequestMapping(value={"/private/api/grado"}, method=RequestMethod.GET)
+    @ResponseBody
+    public List<GradoBean> listGradoByNivel (@RequestParam(required=false) Integer idNivel) {
+        if (idNivel == null) {
+            return planCurricularService.listAllGrado();
+        }
+        return planCurricularService.listAllGrado(idNivel);
+    }
+    
+    @RequestMapping(value={"/private/api/grado/{idGrado}"}, method=RequestMethod.GET)
+    @ResponseBody
+    public GradoBean loadGrado (@PathVariable Integer idGrado) {
+        return planCurricularService.loadGradoById(idGrado);
+    }
+    
+    @RequestMapping(value={"/private/api/grado"}, method=RequestMethod.POST)
+    @ResponseBody
+    public GradoBean createGrado (@RequestBody Grado grado) {
+        return planCurricularService.createGrado(grado);
+    }
 
-	@RequestMapping(value={"/private/api/grado/{idGrado}"}, method=RequestMethod.PUT)
-	public @ResponseBody GradoBean updateGrado (@RequestBody Grado grado) {
-		return planCurricularService.updateGrado(grado);
-	}
+    @RequestMapping(value={"/private/api/grado/{idGrado}"}, method=RequestMethod.PUT)
+    @ResponseBody
+    public GradoBean updateGrado (@RequestBody Grado grado) {
+        return planCurricularService.updateGrado(grado);
+    }
 
-	@RequestMapping(value={"/private/api/grado/{idGrado}"}, method=RequestMethod.DELETE)
-	public @ResponseBody Map<String, Object> deleteGrado (@PathVariable Integer idGrado) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		planCurricularService.deleteGrado(idGrado);
-		map.put("success", true);
-		return map;
-	}
-
+    @RequestMapping(value={"/private/api/grado/{idGrado}"}, method=RequestMethod.DELETE)
+    @ResponseBody
+    public Map<String, Object> deleteGrado (@PathVariable Integer idGrado) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        planCurricularService.deleteGrado(idGrado);
+        map.put("success", true);
+        return map;
+    }
 }

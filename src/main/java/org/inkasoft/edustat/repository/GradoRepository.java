@@ -6,7 +6,7 @@ import org.inkasoft.edustat.model.Grado;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GradoRepository extends JpaRepository<Grado, Integer> {
-	
-	public List<Grado> findByNivelIdNivel (Integer idNivel);
+    
+    public List<Grado> findByNivelIdNivel (Integer idNivel);
 
 }

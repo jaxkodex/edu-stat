@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PersonaApiController {
-	@Autowired PersonaService personaService;
-	
-	@RequestMapping(value={"/private/api/persona/{personaDni}"}, method=RequestMethod.GET)
-	public @ResponseBody Persona findByDni (@PathVariable String personaDni) {
-		return personaService.loadByDni(personaDni);
-	}
+    @Autowired PersonaService personaService;
+    
+    @RequestMapping(value={"/private/api/persona/{personaDni}"}, method=RequestMethod.GET)
+    @ResponseBody
+    public Persona findByDni (@PathVariable String personaDni) {
+        return personaService.loadByDni(personaDni);
+    }
 
 }

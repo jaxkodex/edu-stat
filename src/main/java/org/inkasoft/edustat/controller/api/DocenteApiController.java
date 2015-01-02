@@ -19,37 +19,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DocenteApiController {
 
-	@Autowired DocenteService docenteService;
+    @Autowired DocenteService docenteService;
 
-	/*@RequestMapping(value={"/public/api/docente"}, method=RequestMethod.GET)
-	public List<DocenteBean> listAllDocentes () {
-		return docenteService.findAll();
-	}*/
-
-	@RequestMapping(value={"/private/api/docente"}, method=RequestMethod.GET)
-	public @ResponseBody List<DocenteBean> listAllDocentesByIe (@RequestParam Integer idIe) {
-		return docenteService.findAllByIe(idIe);
-	}
-	
-	@RequestMapping(value={"/private/api/docente/{idDocente}"}, method=RequestMethod.GET)
-	public @ResponseBody DocenteBean loadDocente (@PathVariable Integer idDocente) {
-		return docenteService.loadById(idDocente);
-	}
-	
-	@RequestMapping(value={"/private/api/docente"}, method=RequestMethod.POST)
-	public @ResponseBody DocenteBean create (@RequestBody Docente docente) throws Exception {
-		return docenteService.create(docente);
-	}
-	
-	@RequestMapping(value={"/private/api/docente"}, method=RequestMethod.PUT)
-	public @ResponseBody DocenteBean update (@RequestBody Docente docente) throws Exception {
-		return docenteService.update(docente);
-	}
-	
-	@RequestMapping(value={"/private/api/docente/{idDocente}"}, method=RequestMethod.DELETE)
-	public @ResponseBody Map<String, Object> delete (@PathVariable Integer idDocente) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		docenteService.delete(idDocente);
-		return map;
-	}
+    @RequestMapping(value={"/private/api/docente"}, method=RequestMethod.GET)
+    @ResponseBody
+    public List<DocenteBean> listAllDocentesByIe (@RequestParam Integer idIe) {
+        return docenteService.findAllByIe(idIe);
+    }
+    
+    @RequestMapping(value={"/private/api/docente/{idDocente}"}, method=RequestMethod.GET)
+    @ResponseBody
+    public DocenteBean loadDocente (@PathVariable Integer idDocente) {
+        return docenteService.loadById(idDocente);
+    }
+    
+    @RequestMapping(value={"/private/api/docente"}, method=RequestMethod.POST)
+    @ResponseBody
+    public DocenteBean create (@RequestBody Docente docente) {
+        return docenteService.create(docente);
+    }
+    
+    @RequestMapping(value={"/private/api/docente"}, method=RequestMethod.PUT)
+    @ResponseBody
+    public DocenteBean update (@RequestBody Docente docente) {
+        return docenteService.update(docente);
+    }
+    
+    @RequestMapping(value={"/private/api/docente/{idDocente}"}, method=RequestMethod.DELETE)
+    @ResponseBody
+    public Map<String, Object> delete (@PathVariable Integer idDocente) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        docenteService.delete(idDocente);
+        return map;
+    }
 }

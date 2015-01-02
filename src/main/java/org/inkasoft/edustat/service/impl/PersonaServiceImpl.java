@@ -8,14 +8,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PersonaServiceImpl implements PersonaService {
-	@Autowired PersonaRepository personaRepository;
+    @Autowired
+    PersonaRepository personaRepository;
 
-	public Persona loadByDni(String dni) {
-		return personaRepository.findOne(dni);
-	}
+    public Persona loadByDni(String dni) {
+        return personaRepository.findOne(dni);
+    }
 
-	public Persona update(Persona persona) {
-		return personaRepository.save(persona);
-	}
+    public Persona update(Persona persona) {
+        return personaRepository.save(persona);
+    }
 
 }

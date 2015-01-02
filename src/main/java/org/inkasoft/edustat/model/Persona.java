@@ -17,120 +17,120 @@ import java.util.List;
 @Table(name="persona")
 @NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p")
 public class Persona implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="persona_dni")
-	private String personaDni;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="persona_dni")
+    private String personaDni;
 
-	@Column(name="persona_amaterno")
-	private String personaAmaterno;
+    @Column(name="persona_amaterno")
+    private String personaAmaterno;
 
-	@Column(name="persona_apaterno")
-	private String personaApaterno;
+    @Column(name="persona_apaterno")
+    private String personaApaterno;
 
-	@Column(name="persona_pnombre")
-	private String personaPnombre;
+    @Column(name="persona_pnombre")
+    private String personaPnombre;
 
-	@Column(name="persona_snombre")
-	private String personaSnombre;
+    @Column(name="persona_snombre")
+    private String personaSnombre;
 
-	//bi-directional many-to-one association to Docente
-	@JsonIgnore
-	@OneToMany(mappedBy="persona")
-	private List<Docente> docentes;
+    //bi-directional many-to-one association to Docente
+    @JsonIgnore
+    @OneToMany(mappedBy="persona")
+    private List<Docente> docentes;
 
-	//bi-directional many-to-one association to Usuario
-	@JsonIgnore
-	@OneToMany(mappedBy="persona")
-	private List<Usuario> usuarios;
+    //bi-directional many-to-one association to Usuario
+    @JsonIgnore
+    @OneToMany(mappedBy="persona")
+    private List<Usuario> usuarios;
 
-	public Persona() {
-	}
+    public Persona() {
+    }
 
-	public String getPersonaDni() {
-		return this.personaDni;
-	}
+    public String getPersonaDni() {
+        return this.personaDni;
+    }
 
-	public void setPersonaDni(String personaDni) {
-		this.personaDni = personaDni;
-	}
+    public void setPersonaDni(String personaDni) {
+        this.personaDni = personaDni;
+    }
 
-	public String getPersonaAmaterno() {
-		return this.personaAmaterno;
-	}
+    public String getPersonaAmaterno() {
+        return this.personaAmaterno;
+    }
 
-	public void setPersonaAmaterno(String personaAmaterno) {
-		this.personaAmaterno = personaAmaterno;
-	}
+    public void setPersonaAmaterno(String personaAmaterno) {
+        this.personaAmaterno = personaAmaterno;
+    }
 
-	public String getPersonaApaterno() {
-		return this.personaApaterno;
-	}
+    public String getPersonaApaterno() {
+        return this.personaApaterno;
+    }
 
-	public void setPersonaApaterno(String personaApaterno) {
-		this.personaApaterno = personaApaterno;
-	}
+    public void setPersonaApaterno(String personaApaterno) {
+        this.personaApaterno = personaApaterno;
+    }
 
-	public String getPersonaPnombre() {
-		return this.personaPnombre;
-	}
+    public String getPersonaPnombre() {
+        return this.personaPnombre;
+    }
 
-	public void setPersonaPnombre(String personaPnombre) {
-		this.personaPnombre = personaPnombre;
-	}
+    public void setPersonaPnombre(String personaPnombre) {
+        this.personaPnombre = personaPnombre;
+    }
 
-	public String getPersonaSnombre() {
-		return this.personaSnombre;
-	}
+    public String getPersonaSnombre() {
+        return this.personaSnombre;
+    }
 
-	public void setPersonaSnombre(String personaSnombre) {
-		this.personaSnombre = personaSnombre;
-	}
+    public void setPersonaSnombre(String personaSnombre) {
+        this.personaSnombre = personaSnombre;
+    }
 
-	public List<Docente> getDocentes() {
-		return this.docentes;
-	}
+    public List<Docente> getDocentes() {
+        return this.docentes;
+    }
 
-	public void setDocentes(List<Docente> docentes) {
-		this.docentes = docentes;
-	}
+    public void setDocentes(List<Docente> docentes) {
+        this.docentes = docentes;
+    }
 
-	public Docente addDocente(Docente docente) {
-		getDocentes().add(docente);
-		docente.setPersona(this);
+    public Docente addDocente(Docente docente) {
+        getDocentes().add(docente);
+        docente.setPersona(this);
 
-		return docente;
-	}
+        return docente;
+    }
 
-	public Docente removeDocente(Docente docente) {
-		getDocentes().remove(docente);
-		docente.setPersona(null);
+    public Docente removeDocente(Docente docente) {
+        getDocentes().remove(docente);
+        docente.setPersona(null);
 
-		return docente;
-	}
+        return docente;
+    }
 
-	public List<Usuario> getUsuarios() {
-		return this.usuarios;
-	}
+    public List<Usuario> getUsuarios() {
+        return this.usuarios;
+    }
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
-	public Usuario addUsuario(Usuario usuario) {
-		getUsuarios().add(usuario);
-		usuario.setPersona(this);
+    public Usuario addUsuario(Usuario usuario) {
+        getUsuarios().add(usuario);
+        usuario.setPersona(this);
 
-		return usuario;
-	}
+        return usuario;
+    }
 
-	public Usuario removeUsuario(Usuario usuario) {
-		getUsuarios().remove(usuario);
-		usuario.setPersona(null);
+    public Usuario removeUsuario(Usuario usuario) {
+        getUsuarios().remove(usuario);
+        usuario.setPersona(null);
 
-		return usuario;
-	}
+        return usuario;
+    }
 
 }

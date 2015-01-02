@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
-	
-	@Query("from Usuario where username like '%'||:username||'%'")
-	public List<Usuario> searchByUsername (@Param(value = "username") String username);
+    
+    @Query("from Usuario where username like '%'||:username||'%'")
+    public List<Usuario> searchByUsername (@Param(value = "username") String username);
 
 }
