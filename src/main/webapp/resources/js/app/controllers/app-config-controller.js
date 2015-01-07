@@ -61,7 +61,7 @@ define(['web-app',
 				reset: true,
 				success: function () {
 					var view = new GradoView({
-						collection: nivelCollection
+						nivelCollection: nivelCollection
 					});
 					app.main.show(view);
 				}

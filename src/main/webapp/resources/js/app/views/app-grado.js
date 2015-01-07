@@ -1,16 +1,18 @@
 define(['marionette', 'templates/app-templates', 
-        'collections/grado-collection'], function (Marionette, AppTemplates,
+        'collections/grado-collection',
+        'bootstrap'], function (Marionette, AppTemplates,
         		GradoCollection) {
-	var NivelItemView;
 	
-	NivelItemView = Marionette.ItemView.extend({
-		template: _.template('<%=nivelNombre%>')
-	});
-	
-	
-	return Marionette.CompositeView.extend({
+	return Marionette.ItemView.extend({
+		initialize: function (opts) {
+			this.options = opts;
+		},
 		template: AppTemplates.mantenimientoGradoListTemplate,
-		childViewContainer: '#niveles', 
-		childView: NivelItemView
+		serializeData: function () {
+			console.log(this.options.nivelCollection.toJSON());
+			return {
+				niveles: this.options.nivelCollection.toJSON()
+			};
+		}
 	});
 });
