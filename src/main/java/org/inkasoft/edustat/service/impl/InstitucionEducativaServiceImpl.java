@@ -10,27 +10,27 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InstitucionEducativaServiceImpl implements
-		InstitucionEducativaService {
-	@Autowired InstitucionEducativaRepository institucionEducativaRepository;
+        InstitucionEducativaService {
+    @Autowired InstitucionEducativaRepository institucionEducativaRepository;
 
-	public InstitucionEducativa create(InstitucionEducativa institucionEducativa) {
-		return institucionEducativaRepository.save(institucionEducativa);
-	}
+    public InstitucionEducativa create(InstitucionEducativa institucionEducativa) {
+        return institucionEducativaRepository.save(institucionEducativa);
+    }
 
-	public List<InstitucionEducativa> findAll() {
-		return institucionEducativaRepository.findAll();
-	}
+    public List<InstitucionEducativa> findAll() {
+        return institucionEducativaRepository.findAll();
+    }
 
-	public InstitucionEducativa update(InstitucionEducativa institucionEducativa) {
-		return institucionEducativaRepository.save(institucionEducativa);
-	}
+    public InstitucionEducativa update(InstitucionEducativa institucionEducativa) {
+        return institucionEducativaRepository.save(institucionEducativa);
+    }
 
-	public void delete(Integer id) {
-		institucionEducativaRepository.delete(id);
-	}
+    public void delete(Integer id) {
+        institucionEducativaRepository.delete(id);
+    }
 
-	public InstitucionEducativa loadById(Integer id) {
-		return institucionEducativaRepository.findOne(id);
-	}
+    public InstitucionEducativa loadById(Integer id) {
+        return institucionEducativaRepository.findOne(id);
+    }
 
 }

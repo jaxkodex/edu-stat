@@ -13,85 +13,85 @@ import java.util.List;
 @Table(name="clase")
 @NamedQuery(name="Clase.findAll", query="SELECT c FROM Clase c")
 public class Clase implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_clase")
-	private int idClase;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="id_clase")
+    private int idClase;
 
-	//bi-directional many-to-one association to AreaHasDocente
-	@OneToMany(mappedBy="clase")
-	private List<AreaHasDocente> areaHasDocentes;
+    //bi-directional many-to-one association to AreaHasDocente
+    @OneToMany(mappedBy="clase")
+    private List<AreaHasDocente> areaHasDocentes;
 
-	//bi-directional many-to-one association to PeriodoAcademico
-	@ManyToOne
-	@JoinColumn(name="periodo_academico_id_periodo")
-	private PeriodoAcademico periodoAcademico;
+    //bi-directional many-to-one association to PeriodoAcademico
+    @ManyToOne
+    @JoinColumn(name="periodo_academico_id_periodo")
+    private PeriodoAcademico periodoAcademico;
 
-	//bi-directional many-to-one association to Seccion
-	@ManyToOne
-	private Seccion seccion;
+    //bi-directional many-to-one association to Seccion
+    @ManyToOne
+    private Seccion seccion;
 
-	//bi-directional many-to-one association to Turno
-	@ManyToOne
-	private Turno turno;
+    //bi-directional many-to-one association to Turno
+    @ManyToOne
+    private Turno turno;
 
-	public Clase() {
-	}
+    public Clase() {
+    }
 
-	public int getIdClase() {
-		return this.idClase;
-	}
+    public int getIdClase() {
+        return this.idClase;
+    }
 
-	public void setIdClase(int idClase) {
-		this.idClase = idClase;
-	}
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
+    }
 
-	public List<AreaHasDocente> getAreaHasDocentes() {
-		return this.areaHasDocentes;
-	}
+    public List<AreaHasDocente> getAreaHasDocentes() {
+        return this.areaHasDocentes;
+    }
 
-	public void setAreaHasDocentes(List<AreaHasDocente> areaHasDocentes) {
-		this.areaHasDocentes = areaHasDocentes;
-	}
+    public void setAreaHasDocentes(List<AreaHasDocente> areaHasDocentes) {
+        this.areaHasDocentes = areaHasDocentes;
+    }
 
-	public AreaHasDocente addAreaHasDocente(AreaHasDocente areaHasDocente) {
-		getAreaHasDocentes().add(areaHasDocente);
-		areaHasDocente.setClase(this);
+    public AreaHasDocente addAreaHasDocente(AreaHasDocente areaHasDocente) {
+        getAreaHasDocentes().add(areaHasDocente);
+        areaHasDocente.setClase(this);
 
-		return areaHasDocente;
-	}
+        return areaHasDocente;
+    }
 
-	public AreaHasDocente removeAreaHasDocente(AreaHasDocente areaHasDocente) {
-		getAreaHasDocentes().remove(areaHasDocente);
-		areaHasDocente.setClase(null);
+    public AreaHasDocente removeAreaHasDocente(AreaHasDocente areaHasDocente) {
+        getAreaHasDocentes().remove(areaHasDocente);
+        areaHasDocente.setClase(null);
 
-		return areaHasDocente;
-	}
+        return areaHasDocente;
+    }
 
-	public PeriodoAcademico getPeriodoAcademico() {
-		return this.periodoAcademico;
-	}
+    public PeriodoAcademico getPeriodoAcademico() {
+        return this.periodoAcademico;
+    }
 
-	public void setPeriodoAcademico(PeriodoAcademico periodoAcademico) {
-		this.periodoAcademico = periodoAcademico;
-	}
+    public void setPeriodoAcademico(PeriodoAcademico periodoAcademico) {
+        this.periodoAcademico = periodoAcademico;
+    }
 
-	public Seccion getSeccion() {
-		return this.seccion;
-	}
+    public Seccion getSeccion() {
+        return this.seccion;
+    }
 
-	public void setSeccion(Seccion seccion) {
-		this.seccion = seccion;
-	}
+    public void setSeccion(Seccion seccion) {
+        this.seccion = seccion;
+    }
 
-	public Turno getTurno() {
-		return this.turno;
-	}
+    public Turno getTurno() {
+        return this.turno;
+    }
 
-	public void setTurno(Turno turno) {
-		this.turno = turno;
-	}
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
 
 }

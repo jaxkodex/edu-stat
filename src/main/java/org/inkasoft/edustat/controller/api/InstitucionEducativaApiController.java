@@ -14,24 +14,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class InstitucionEducativaApiController {
-	@Autowired InstitucionEducativaService institucionEducativaService;
-	
-	@RequestMapping(value="/public/api/institucioneducativa", method=RequestMethod.GET)
-	@ResponseBody
-	public List<InstitucionEducativa> list () {
-		return institucionEducativaService.findAll();
-	}
-	
-	@RequestMapping(value="/private/api/institucioneducativa", method=RequestMethod.POST)
-	@ResponseBody
-	public InstitucionEducativa create (@RequestBody InstitucionEducativa institucionEducativa) throws Exception {
-		return institucionEducativaService.create(institucionEducativa);
-	}
-	
-	@RequestMapping(value="/public/api/institucioneducativa/{idInstitucionEducativa}", method=RequestMethod.GET)
-	@ResponseBody
-	public InstitucionEducativa load (@PathVariable Integer idInstitucionEducativa) {
-		return institucionEducativaService.loadById(idInstitucionEducativa);
-	}
+    @Autowired InstitucionEducativaService institucionEducativaService;
+    
+    @RequestMapping(value="/public/api/institucioneducativa", method=RequestMethod.GET)
+    @ResponseBody
+    public List<InstitucionEducativa> list () {
+        return institucionEducativaService.findAll();
+    }
+    
+    @RequestMapping(value="/private/api/institucioneducativa", method=RequestMethod.POST)
+    @ResponseBody
+    public InstitucionEducativa create (@RequestBody InstitucionEducativa institucionEducativa) {
+        return institucionEducativaService.create(institucionEducativa);
+    }
+    
+    @RequestMapping(value="/public/api/institucioneducativa/{idInstitucionEducativa}", method=RequestMethod.GET)
+    @ResponseBody
+    public InstitucionEducativa load (@PathVariable Integer idInstitucionEducativa) {
+        return institucionEducativaService.loadById(idInstitucionEducativa);
+    }
 
 }

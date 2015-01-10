@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 define(['backbone'], function (Backbone) {
 	return Backbone.Model.extend({
 		urlRoot: baseUrl+'session',
@@ -10,4 +6,4 @@ define(['backbone'], function (Backbone) {
 			username: ''
 		}
 	});
-})
+});

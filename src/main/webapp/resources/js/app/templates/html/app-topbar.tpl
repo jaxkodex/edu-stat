@@ -4,7 +4,7 @@
 			<li><a href="#"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
 			<li><a href="#profile"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
 			<li><a href="#messages"><span class="glyphicon glyphicon-inbox"></span> Mensajes</a></li>
-			<li><a href="#messages"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+			<li><a href="<%=contextPath%>/auth/logout"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 		</ul>
 	</div>
 </div>

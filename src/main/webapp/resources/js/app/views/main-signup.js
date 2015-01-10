@@ -64,7 +64,7 @@ define(['marionette',
 			}
 			this.resultsView.$el.css({ display: 'block'}).animate({'left': '0px', 'opacity': '1'}, {
 				duration: 200	
-			});;
+			});
 			this.fetchXhr = this.options.institucionEducativaCollection.fetch({
 				data: {
 					q: this.$('#institucioneducativa').val()

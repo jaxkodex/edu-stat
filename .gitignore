@@ -15,3 +15,8 @@ hs_err_pid*
 target/
 .classpath
 .project
+
+sonar-project.properties
+.sonar/
+
+src/main/webapp/WEB-INF/database.properties

@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SessionApiController {
-	
-	@RequestMapping(value="/private/api/session", method=RequestMethod.GET)
-	@ResponseBody
-	public Usuario getSession (HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Usuario usuario = (Usuario) session.getAttribute("usuario");
-		return usuario;
-	}
+    
+    @RequestMapping(value="/private/api/session", method=RequestMethod.GET)
+    @ResponseBody
+    public Usuario getSession (HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return (Usuario) session.getAttribute("usuario");
+    }
 
-	@RequestMapping(value="/private/api/session/{sessionId}", method=RequestMethod.GET)
-	@ResponseBody
-	public Usuario getSessionModel (HttpServletRequest request) {
-		return getSession(request);
-	}
+    @RequestMapping(value="/private/api/session/{sessionId}", method=RequestMethod.GET)
+    @ResponseBody
+    public Usuario getSessionModel (HttpServletRequest request) {
+        return getSession(request);
+    }
 
 }

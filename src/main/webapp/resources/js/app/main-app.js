@@ -1,8 +1,3 @@
-/**
- * 
- */
-
-
 define(['marionette',
         'views/main-footer'], function (Marionette, FooterView) {
 	var app = new Marionette.Application ();

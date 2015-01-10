@@ -17,125 +17,98 @@ import java.util.List;
 @Table(name="institucion_educativa")
 @NamedQuery(name="InstitucionEducativa.findAll", query="SELECT i FROM InstitucionEducativa i")
 public class InstitucionEducativa implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_ie")
-	private int idIe;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="id_ie")
+    private int idIe;
 
-	@Column(name="ie_codigo")
-	private String ieCodigo;
+    @Column(name="ie_codigo")
+    private String ieCodigo;
 
-	@Column(name="ie_nombre")
-	private String ieNombre;
+    @Column(name="ie_nombre")
+    private String ieNombre;
 
-	//bi-directional many-to-one association to InstitucionEducativaHasDocente
-	/*
-	@OneToMany(mappedBy="institucionEducativa")
-	private List<InstitucionEducativaHasDocente> institucionEducativaHasDocentes;*/
+    //bi-directional many-to-one association to PeriodoAcademico
+    @JsonIgnore
+    @OneToMany(mappedBy="institucionEducativa")
+    private List<PeriodoAcademico> periodoAcademicos;
 
-	//bi-directional many-to-one association to PeriodoAcademico
-	@JsonIgnore
-	@OneToMany(mappedBy="institucionEducativa")
-	private List<PeriodoAcademico> periodoAcademicos;
+    //bi-directional many-to-one association to Usuario
+    @JsonIgnore
+    @OneToMany(mappedBy="institucionEducativa")
+    private List<Usuario> usuarios;
 
-	//bi-directional many-to-one association to Usuario
-	@JsonIgnore
-	@OneToMany(mappedBy="institucionEducativa")
-	private List<Usuario> usuarios;
+    public InstitucionEducativa() {
+    }
 
-	public InstitucionEducativa() {
-	}
+    public int getIdIe() {
+        return this.idIe;
+    }
 
-	public int getIdIe() {
-		return this.idIe;
-	}
+    public void setIdIe(int idIe) {
+        this.idIe = idIe;
+    }
 
-	public void setIdIe(int idIe) {
-		this.idIe = idIe;
-	}
+    public String getIeCodigo() {
+        return this.ieCodigo;
+    }
 
-	public String getIeCodigo() {
-		return this.ieCodigo;
-	}
+    public void setIeCodigo(String ieCodigo) {
+        this.ieCodigo = ieCodigo;
+    }
 
-	public void setIeCodigo(String ieCodigo) {
-		this.ieCodigo = ieCodigo;
-	}
+    public String getIeNombre() {
+        return this.ieNombre;
+    }
 
-	public String getIeNombre() {
-		return this.ieNombre;
-	}
+    public void setIeNombre(String ieNombre) {
+        this.ieNombre = ieNombre;
+    }
 
-	public void setIeNombre(String ieNombre) {
-		this.ieNombre = ieNombre;
-	}
+    public List<PeriodoAcademico> getPeriodoAcademicos() {
+        return this.periodoAcademicos;
+    }
 
-	/*public List<InstitucionEducativaHasDocente> getInstitucionEducativaHasDocentes() {
-		return this.institucionEducativaHasDocentes;
-	}
+    public void setPeriodoAcademicos(List<PeriodoAcademico> periodoAcademicos) {
+        this.periodoAcademicos = periodoAcademicos;
+    }
 
-	public void setInstitucionEducativaHasDocentes(List<InstitucionEducativaHasDocente> institucionEducativaHasDocentes) {
-		this.institucionEducativaHasDocentes = institucionEducativaHasDocentes;
-	}
+    public PeriodoAcademico addPeriodoAcademico(PeriodoAcademico periodoAcademico) {
+        getPeriodoAcademicos().add(periodoAcademico);
+        periodoAcademico.setInstitucionEducativa(this);
 
-	public InstitucionEducativaHasDocente addInstitucionEducativaHasDocente(InstitucionEducativaHasDocente institucionEducativaHasDocente) {
-		getInstitucionEducativaHasDocentes().add(institucionEducativaHasDocente);
-		institucionEducativaHasDocente.setInstitucionEducativa(this);
+        return periodoAcademico;
+    }
 
-		return institucionEducativaHasDocente;
-	}
+    public PeriodoAcademico removePeriodoAcademico(PeriodoAcademico periodoAcademico) {
+        getPeriodoAcademicos().remove(periodoAcademico);
+        periodoAcademico.setInstitucionEducativa(null);
 
-	public InstitucionEducativaHasDocente removeInstitucionEducativaHasDocente(InstitucionEducativaHasDocente institucionEducativaHasDocente) {
-		getInstitucionEducativaHasDocentes().remove(institucionEducativaHasDocente);
-		institucionEducativaHasDocente.setInstitucionEducativa(null);
+        return periodoAcademico;
+    }
 
-		return institucionEducativaHasDocente;
-	}*/
+    public List<Usuario> getUsuarios() {
+        return this.usuarios;
+    }
 
-	public List<PeriodoAcademico> getPeriodoAcademicos() {
-		return this.periodoAcademicos;
-	}
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
-	public void setPeriodoAcademicos(List<PeriodoAcademico> periodoAcademicos) {
-		this.periodoAcademicos = periodoAcademicos;
-	}
+    public Usuario addUsuario(Usuario usuario) {
+        getUsuarios().add(usuario);
+        usuario.setInstitucionEducativa(this);
 
-	public PeriodoAcademico addPeriodoAcademico(PeriodoAcademico periodoAcademico) {
-		getPeriodoAcademicos().add(periodoAcademico);
-		periodoAcademico.setInstitucionEducativa(this);
+        return usuario;
+    }
 
-		return periodoAcademico;
-	}
+    public Usuario removeUsuario(Usuario usuario) {
+        getUsuarios().remove(usuario);
+        usuario.setInstitucionEducativa(null);
 
-	public PeriodoAcademico removePeriodoAcademico(PeriodoAcademico periodoAcademico) {
-		getPeriodoAcademicos().remove(periodoAcademico);
-		periodoAcademico.setInstitucionEducativa(null);
-
-		return periodoAcademico;
-	}
-
-	public List<Usuario> getUsuarios() {
-		return this.usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public Usuario addUsuario(Usuario usuario) {
-		getUsuarios().add(usuario);
-		usuario.setInstitucionEducativa(this);
-
-		return usuario;
-	}
-
-	public Usuario removeUsuario(Usuario usuario) {
-		getUsuarios().remove(usuario);
-		usuario.setInstitucionEducativa(null);
-
-		return usuario;
-	}
+        return usuario;
+    }
 
 }

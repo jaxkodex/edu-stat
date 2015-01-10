@@ -13,36 +13,34 @@ import org.inkasoft.edustat.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-//SavedRequestAwareAuthenticationSuccessHandler
 @Component
-public class AuthSuccessFilter extends SimpleUrlAuthenticationSuccessHandler { //implements AuthenticationSuccessHandler { // extends BasicAuthenticationFilter {
-	private static Logger logger = Logger.getLogger(AuthSuccessFilter.class);
-	
-	@Autowired UsuarioService usuarioService;
-	
-	public AuthSuccessFilter () {
-		this.setDefaultTargetUrl("/app");// Should not do this
-	}
-	public AuthSuccessFilter (String defaultTargetUrl) {
-		super(defaultTargetUrl);
-	}
+public class AuthSuccessFilter extends SimpleUrlAuthenticationSuccessHandler {
+    private static final Logger LOGGER = Logger.getLogger(AuthSuccessFilter.class);
+    
+    @Autowired UsuarioService usuarioService;
+    
+    public AuthSuccessFilter () {
+        this.setDefaultTargetUrl("/app");
+    }
+    public AuthSuccessFilter (String defaultTargetUrl) {
+        super(defaultTargetUrl);
+    }
 
-	public void onAuthenticationSuccess(HttpServletRequest request,
-			HttpServletResponse response, Authentication auth) throws IOException,
-			ServletException {
-		HttpSession session = request.getSession();
-		String username = auth.getName();
-		Usuario usuario = usuarioService.loadById(username);
-		session.setAttribute("usuario", usuario);
-		for (GrantedAuthority a : auth.getAuthorities()) {
-			logger.debug("Granted: "+a.getAuthority());
-		}
-		super.onAuthenticationSuccess(request, response, auth);
-	}
-	
-	
+    public void onAuthenticationSuccess(HttpServletRequest request,
+            HttpServletResponse response, Authentication auth) throws IOException,
+            ServletException {
+        HttpSession session = request.getSession();
+        String username = auth.getName();
+        Usuario usuario = usuarioService.loadById(username);
+        session.setAttribute("usuario", usuario);
+        for (GrantedAuthority a : auth.getAuthorities()) {
+            LOGGER.debug("Granted: "+a.getAuthority());
+        }
+        super.onAuthenticationSuccess(request, response, auth);
+    }
+    
+    
 }

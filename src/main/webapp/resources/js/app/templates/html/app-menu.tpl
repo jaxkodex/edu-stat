@@ -2,9 +2,11 @@
 	Aplicación
 </div>
 <ul class="list-unstyled">
-	<li><a href="#none">Inicio</a></li>
-	<li class="active"><a href="#none">Institucion Educativa</a></li>
-	<li><a href="#none">Docentes</a></li>
-	<li><a href="#none">asd</a></li>
-	<li><a href="#none">asd</a></li>
+	<li class="title">Su cuenta</li>
+	<li><a href="#">Inicio</a></li>
+	<li class="title">Configuración</li>
+	<li class="active"><a href="#ie">Institución Educativa</a></li>
+	<li><a href="#config/docentes">Docentes</a></li>
+	<li><a href="#config/nivel">Niveles</a></li>
+	<li><a href="#config/grado">Grados</a></li>
 </ul>

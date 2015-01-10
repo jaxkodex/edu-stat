@@ -13,7 +13,7 @@ require.config({
 		},
 		bootstrap: {
 			deps: ['jquery'],
-			exports: '$.fn.popover'
+//			exports: '$.fn.popover'
 		},
 		marionette: {
 			deps: ['jquery', 'underscore', 'backbone'],
@@ -21,12 +21,12 @@ require.config({
 		}
 	},
 	paths: {
-		jquery: '../jquery-1.11.1',
-		underscore: '../underscore',
-		backbone: '../backbone',
-		bootstrap: '../bootstrap.min',
-		marionette: '../backbone.marionette',
-		tpl: '../tpl'
+		jquery: '../libs/jquery-1.11.1',
+		underscore: '../libs/underscore',
+		backbone: '../libs/backbone',
+		bootstrap: '../libs/bootstrap',
+		marionette: '../libs/backbone.marionette',
+		tpl: '../libs/tpl'
 	}
 });
 
