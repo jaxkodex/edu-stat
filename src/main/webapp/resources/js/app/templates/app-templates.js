@@ -15,6 +15,9 @@ define(function (require) {
 		// Grados
 		mantenimientoGradoListTemplate: require('tpl!templates/html/app-gradolist.tpl'),
 		
+		// Secciones
+		mantenimientoSeccionListTemplate: require('tpl!templates/html/app-seccionlist.tpl'),
+		
 		menuTemplate: require('tpl!templates/html/app-menu.tpl'),
 		topbarTemplate: require('tpl!templates/html/app-topbar.tpl'),
 		userprofileTemplate: require('tpl!templates/html/app-userprofile.tpl'),

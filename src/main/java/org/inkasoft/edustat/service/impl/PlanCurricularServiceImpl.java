@@ -68,8 +68,12 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
 
     public GradoBean loadGradoById(Integer idGrado) {
         Grado grado;
+        GradoBean bean;
+        
         grado = gradoRepository.findOne(idGrado);
-        return GradoBean.transformToBean(grado);
+        bean = GradoBean.transformToBean(grado);
+        bean.setNivel(NivelBean.transformToBean(grado.getNivel()));
+        return bean;
     }
 
     public SeccionBean loadSeccionById(Integer idSeccion) {
@@ -83,7 +87,9 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
     }
 
     public GradoBean createGrado(Grado grado) {
-        return GradoBean.transformToBean(gradoRepository.save(grado));
+        GradoBean bean = GradoBean.transformToBean(gradoRepository.save(grado));
+        bean.setNivel(NivelBean.transformToBean(grado.getNivel()));
+        return bean;
     }
 
     public SeccionBean createSeccion(Seccion seccion) {
@@ -95,7 +101,9 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
     }
 
     public GradoBean updateGrado(Grado grado) {
-        return GradoBean.transformToBean(gradoRepository.save(grado));
+        GradoBean bean = GradoBean.transformToBean(gradoRepository.save(grado));
+        bean.setNivel(NivelBean.transformToBean(grado.getNivel()));
+        return bean;
     }
 
     public SeccionBean updateSeccion(Seccion seccion) {
@@ -120,7 +128,9 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
         grados = gradoRepository.findByNivelIdNivel(idNivel);
         gradoBeans = new ArrayList<GradoBean>();
         for (Grado grado : grados) {
-            gradoBeans.add(GradoBean.transformToBean(grado));
+            GradoBean bean = GradoBean.transformToBean(grado);
+            bean.setNivel(NivelBean.transformToBean(grado.getNivel()));
+            gradoBeans.add(bean);
         }
         return gradoBeans;
     }
