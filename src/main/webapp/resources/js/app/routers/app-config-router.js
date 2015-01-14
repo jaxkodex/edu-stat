@@ -5,7 +5,8 @@ define(['marionette'], function (Marionette) {
 			'config/docentes': 'showDocenteList',
 			'config/docente/new': 'showNewDocenteForm',
 			'config/nivel': 'showNivelView',
-			'config/grado': 'showGradoView'
+			'config/grado': 'showGradoView',
+			'config/seccion': 'showSeccionView'
 		}
 	});
 });

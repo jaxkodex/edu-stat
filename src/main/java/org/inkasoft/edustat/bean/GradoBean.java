@@ -12,7 +12,9 @@ public class GradoBean implements Serializable {
     
     private String gradoNombre;
     
-    private List<SeccionBean> secciones;
+    private NivelBean nivel;
+    
+    private List<SeccionBean> seccions;
     
     private List<AreaBean> areas;
 
@@ -32,12 +34,12 @@ public class GradoBean implements Serializable {
         this.gradoNombre = gradoNombre;
     }
 
-    public List<SeccionBean> getSecciones() {
-        return secciones;
+    public List<SeccionBean> getSeccions() {
+        return seccions;
     }
 
-    public void setSecciones(List<SeccionBean> secciones) {
-        this.secciones = secciones;
+    public void setSeccions(List<SeccionBean> seccions) {
+        this.seccions = seccions;
     }
 
     public List<AreaBean> getAreas() {
@@ -48,6 +50,14 @@ public class GradoBean implements Serializable {
         this.areas = areas;
     }
     
+    public NivelBean getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(NivelBean nivel) {
+        this.nivel = nivel;
+    }
+
     public static GradoBean transformToBean (Grado grado) {
         if (grado == null) {
             return null;
