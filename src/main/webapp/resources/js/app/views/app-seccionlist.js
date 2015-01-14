@@ -1,15 +1,40 @@
 define(['underscore', 'marionette', 'templates/app-templates', 
-        'collections/nivel-collection', 'collections/grado-collection'], function (_, Marionette, templates, 
-        		NivelCollection, GradoCollection) {
-	var NivelListView, NivelItemListView;
+        'collections/nivel-collection', 'collections/grado-collection', 
+        'collections/seccion-collection'], function (_, Marionette, templates, 
+        		NivelCollection, GradoCollection, SeccionCollection) {
+	var NivelListView, NivelItemListView,
+		GradoListView, GradoItemListView;
+	
+	GradoItemListView = Marionette.ItemView.extend({
+		template: _.template('<%=gradoNombre%>')
+	});
+	
+	GradoListView = Marionette.CompositeView.extend({
+		template: _.template(''),
+		childView: GradoItemListView
+	});
 	
 	NivelItemListView = Marionette.ItemView.extend({
-		template: _.template('<%=nivelNombre%>')
+		events: {
+			'click .nivelNombre': 'selectNivel'
+		},
+		template: _.template('<span class="nivelNombre"><%=nivelNombre%></span>'),
+		selectNivel: function () {
+			this.model.trigger('select:nivel', {
+				model: this.model
+			});
+		}
 	});
 	
 	NivelListView = Marionette.CompositeView.extend({
 		template: _.template(''),
-		childView: NivelItemListView
+		childView: NivelItemListView,
+		collectionEvents: {
+			'select:nivel': 'handleNivelChange'
+		},
+		handleNivelChange: function (args) {
+			this.trigger('set:nivel', args);
+		}
 	});
 	
 	return Marionette.LayoutView.extend({
@@ -17,9 +42,14 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		initialize: function () {
 			this.nivelCollection = new NivelCollection;
 			this.gradoCollection = new GradoCollection;
+			this.seccionCollection = new SeccionCollection;
 			
 			this.nivelListView = new NivelListView({
 				collection: this.nivelCollection
+			});
+			
+			this.gradoListView = new GradoListView ({
+				collection: this.gradoCollection
 			});
 		},
 		regions: {
@@ -28,9 +58,32 @@ define(['underscore', 'marionette', 'templates/app-templates',
 			'secciones': '#seccion-list-region'
 		},
 		onBeforeShow: function () {
-			this.getRegion('niveles').show(this.nivelListView);
+			var me;
 			
-			this.nivelCollection.fetch();
+			me = this;
+			this.getRegion('niveles').show(this.nivelListView);
+			this.getRegion('grados').show(this.gradoListView);
+			
+			this.nivelListView.on('set:nivel', function (args) {
+				me.gradoCollection.fetch({
+					data: {
+						idNivel: args.model.get('idNivel')
+					}
+				});
+			});
+			
+			this.nivelCollection.fetch({
+				success: function () {
+					if (me.nivelCollection.size() < 1) {
+						return;
+					}
+					me.gradoCollection.fetch({
+						data: {
+							idNivel: me.nivelCollection.at(0).get('idNivel')
+						}
+					});
+				}
+			});
 		}
 	});
 });

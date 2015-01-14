@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.inkasoft.edustat.bean.GradoBean;
 import org.inkasoft.edustat.bean.NivelBean;
+import org.inkasoft.edustat.bean.SeccionBean;
 import org.inkasoft.edustat.model.Grado;
 import org.inkasoft.edustat.model.Nivel;
+import org.inkasoft.edustat.model.Seccion;
 import org.inkasoft.edustat.service.PlanCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,5 +91,36 @@ public class PlanCurricularController {
         planCurricularService.deleteGrado(idGrado);
         map.put("success", true);
         return map;
+    }
+    
+    @RequestMapping(value={"/private/api/seccion"}, method=RequestMethod.GET)
+    @ResponseBody
+    public List<SeccionBean> listSecciones (@RequestParam Integer idGrado) {
+        return planCurricularService.listAllSeccion(idGrado);
+    }
+    
+    @RequestMapping(value={"/private/api/seccion/{idSeccion}"}, method=RequestMethod.GET)
+    @ResponseBody
+    public SeccionBean getOneSeccion (@PathVariable Integer idSeccion) {
+        return planCurricularService.loadSeccionById(idSeccion);
+    }
+    
+    @RequestMapping(value={"/private/api/seccion"}, method=RequestMethod.POST)
+    @ResponseBody
+    public SeccionBean createSeccion (@RequestBody Seccion seccion) {
+        return planCurricularService.createSeccion(seccion);
+    }
+    
+    @RequestMapping(value={"/private/api/seccion"}, method=RequestMethod.PUT)
+    @ResponseBody
+    public SeccionBean updateSeccion (@RequestBody Seccion seccion) {
+        return planCurricularService.updateSeccion(seccion);
+    }
+    
+    @RequestMapping(value={"/private/api/seccion/{idSeccion}"}, method=RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteSeccion (@PathVariable Integer idSeccion) {
+        planCurricularService.deleteSeccion(idSeccion);
+        return "OK";
     }
 }
