@@ -1,9 +1,10 @@
-use edustats;
-insert into rol values (null, 'ROL_USER');
-insert into institucion_educativa values (null, 'Santa Rosa del Sauce', 'IESRS');
-insert into persona values ('Jax', '', 'kodex', '', '12345678');
-insert into usuario values ('jaxkodex', md5('123456'), 1, '12345678');
-insert into usuario_has_rol values ('jaxkodex', 1);
+﻿use edustats;
+insert into rol values (1, 'ROL_USER');
+insert into institucion_educativa values (1, 'Santa Rosa del Sauce', 'IESRS');
+select * from persona;
+insert into persona values ('12345678', '', 'admin', '', '12345678');
+insert into usuario values ('admin', md5('admin'), 1, '12345678');
+insert into usuario_has_rol values ('admin', 1);
 
 select * from nivel;
 insert into nivel (nivel_nombre) values ('PRIMARIA');

@@ -111,7 +111,7 @@ public class PlanCurricularController {
         return planCurricularService.createSeccion(seccion);
     }
     
-    @RequestMapping(value={"/private/api/seccion"}, method=RequestMethod.PUT)
+    @RequestMapping(value={"/private/api/seccion/{idSeccion}"}, method=RequestMethod.PUT)
     @ResponseBody
     public SeccionBean updateSeccion (@RequestBody Seccion seccion) {
         return planCurricularService.updateSeccion(seccion);
