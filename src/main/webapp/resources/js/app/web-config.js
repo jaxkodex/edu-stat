@@ -25,6 +25,7 @@ require.config({
 		underscore: '../libs/underscore',
 		backbone: '../libs/backbone',
 		bootstrap: '../libs/bootstrap.min',
+		moment: '../libs/moment.min',
 		marionette: '../libs/backbone.marionette',
 		tpl: '../libs/tpl'
 	},

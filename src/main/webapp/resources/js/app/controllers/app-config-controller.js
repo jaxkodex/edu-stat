@@ -1,21 +1,22 @@
 define(['web-app',
         'models/institucioneducativa-model', 'models/docente-model', 'models/nivel-model',
-        'models/grado-model',
+        'models/grado-model', 'models/periodoacademico-model',
         'collections/docente-collection', 'collections/nivel-collection',
-        'collections/grado-collection', 
+        'collections/grado-collection', 'collections/periodoacademico-collection', 
         'views/app-ie', 'views/app-docentelist', 'views/app-docenteform', 'views/app-nivel',
-        'views/app-grado', 'views/app-seccionlist'], function (app,
+        'views/app-grado', 'views/app-seccionlist', 'views/app-periodoacademico'], function (app,
         		InstitucionEducativaModel, DocenteModel, NivelModel,
-        		GradoModel,
+        		GradoModel, PeriodoAcademicoModel,
         		DocenteCollection, NivelCollection,
-        		GradoCollection,
+        		GradoCollection, PeriodoAcademicoCollection,
         		IeDataView, DocenteListView, DocenteFormView, NivelView,
-        		GradoView, SeccionListView) {
-	var docenteCollection, nivelCollection, gradoCollection;
+        		GradoView, SeccionListView, PeriodoAcademicoView) {
+	var docenteCollection, nivelCollection, gradoCollection, periodoAcademicoCollection;
 	
 	gradoCollection = new GradoCollection;
 	docenteCollection = new DocenteCollection;
 	nivelCollection = new NivelCollection;
+	periodoAcademicoCollection = new PeriodoAcademicoCollection;
 	
 	return {
 		showIePage: function () {
@@ -23,6 +24,18 @@ define(['web-app',
 				model: new InstitucionEducativaModel(userData.institucionEducativa)
 			});
 			app.main.show(view);
+		},
+		showPeriodoAcademico: function () {
+			periodoAcademicoCollection.fetch({
+				reset: true,
+				success: function () {
+					var view = new PeriodoAcademicoView({
+						model: new InstitucionEducativaModel(userData.institucionEducativa),
+						collection: periodoAcademicoCollection
+					});
+					app.main.show(view);
+				}
+			});
 		},
 		showDocenteList: function () {
 			docenteCollection.fetch({
