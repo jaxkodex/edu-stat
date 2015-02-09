@@ -11,3 +11,10 @@ insert into nivel (nivel_nombre) values ('PRIMARIA');
 insert into nivel (nivel_nombre) values ('INICIAL');
 insert into nivel (nivel_nombre) values ('SECUNDARIA');
 
+select * from usuario;
+update usuario set username = 'admin';
+update usuario_has_rol set usuario_username = 'admin';
+delete from usuario where username = 'jaxkodex';
+
+select * from docente;
+select * from evaluador;

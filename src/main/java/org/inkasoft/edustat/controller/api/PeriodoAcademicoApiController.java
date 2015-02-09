@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.inkasoft.edustat.bean.PeriodoAcademicoBean;
 import org.inkasoft.edustat.model.PeriodoAcademico;
 import org.inkasoft.edustat.model.Usuario;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class PeriodoAcademicoApiController {
+    private static final Logger LOGGER = Logger.getLogger(PeriodoAcademicoApiController.class);
     @Autowired
     private PeriodoAcademicoService periodoAcademicoService;
 
@@ -41,14 +43,23 @@ public class PeriodoAcademicoApiController {
     
     @RequestMapping(value="/private/api/periodoacademico", method=RequestMethod.POST)
     @ResponseBody
-    public PeriodoAcademicoBean create (@RequestBody PeriodoAcademico periodoAcademico) throws PeriodoAcademicoAbiertoYaExisteException {
+    public PeriodoAcademicoBean create (@RequestBody PeriodoAcademico periodoAcademico, HttpServletRequest request) throws PeriodoAcademicoAbiertoYaExisteException {
+        HttpSession session;
+        Usuario sessionUser;
+        
+        session = request.getSession();
+        sessionUser = (Usuario) session.getAttribute("usuario");
+        
+        periodoAcademico.setInstitucionEducativa(sessionUser.getInstitucionEducativa());
         return periodoAcademicoService.aperturarPeriodoAcademico(periodoAcademico);
     }
     
     @ExceptionHandler(value=PeriodoAcademicoAbiertoYaExisteException.class)
-    @ResponseStatus(value=HttpStatus.CONFLICT, reason="Periodo acad�mico ya existe")
+    @ResponseStatus(value=HttpStatus.CONFLICT, reason="Periodo académico ya existe")
+    @ResponseBody
     public Map<String, Object> errorPeriodo (PeriodoAcademicoAbiertoYaExisteException ex) {
         Map<String, Object> map = new HashMap<String, Object>();
+        LOGGER.error("Periodo académico ya existe", ex);
         map.put("success", false);
         map.put("mensaje", ex.getMessage());
         return map;

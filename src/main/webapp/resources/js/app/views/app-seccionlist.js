@@ -1,10 +1,12 @@
 define(['underscore', 'marionette', 'templates/app-templates', 
-        'collections/nivel-collection', 'collections/grado-collection', 
+        'collections/nivel-collection', 
+        'models/grado-model', 'collections/grado-collection', 
         'collections/seccion-collection'], function (_, Marionette, templates, 
-        		NivelCollection, GradoCollection, SeccionCollection) {
+        		NivelCollection, 
+        		GradoModel, GradoCollection, SeccionCollection) {
 	var NivelListView, NivelItemListView,
-		GradoListView, GradoItemListView,
-		SeccionListView, SeccionItemListView;
+		GradoListView, GradoItemListView, EmptyGradoView,
+		SeccionListView, SeccionItemListView, SeccionEmptyView;
 	
 	SeccionItemListView = Marionette.ItemView.extend({
 		events: {
@@ -28,7 +30,8 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		},
 		save: function (evt) {
 			if (evt.keyCode == 13) {
-				var value = this.$('input').val();
+				console.log(this.model.toJSON());
+				var value = this.$('input').val().trim();
 				this.model.save({ seccionNombre: value }, { wait: true });
 				this.$el.removeClass('editing');
 			}
@@ -39,14 +42,19 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		}
 	});
 	
+	SeccionEmptyView = Marionette.ItemView.extend({
+		template: _.template('Sin data :(')
+	});
+	
 	SeccionListView = Marionette.CompositeView.extend({
 		events: {
 			'click .add-seccion': 'handleAddSeccion'
 		},
-		template: _.template('<div class="row"><div style="padding-top: 5px;" class="col-sm-12 clearfix"><button class="add-seccion btn btn-xs btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span></button></div></div>'),
+		template: _.template('<i><%=gradoNombre%></i><div class="row"><div style="padding-top: 5px;" class="col-sm-12 clearfix"><button class="add-seccion btn btn-xs btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span></button></div></div>'),
 		childView: SeccionItemListView,
+		emptyView: SeccionEmptyView,
 		handleAddSeccion: function () {
-			this.collection.add({ grado: { idGrado: this.gradoModel.get('idGrado') } });
+			this.collection.add({ grado: { idGrado: this.model.get('idGrado') } });
 		}
 	});
 	
@@ -54,12 +62,17 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		events: {
 			'click .gradoNombre': 'selectGrado'
 		},
-		template: _.template('<div class="gradoNombre"><%=gradoNombre%></div>'),
-		selectGrado: function () {
+		template: _.template('<a href="#" class="gradoNombre"><%=gradoNombre%></a>'),
+		selectGrado: function (evt) {
+			evt.preventDefault();
 			this.model.trigger('select:grado', {
 				model: this.model
 			});
 		}
+	});
+	
+	EmptyGradoView = Marionette.ItemView.extend({
+		template: _.template('Sin Data')
 	});
 	
 	GradoListView = Marionette.CompositeView.extend({
@@ -68,6 +81,7 @@ define(['underscore', 'marionette', 'templates/app-templates',
 			'select:grado': 'handleGradoSelect'
 		},
 		childView: GradoItemListView,
+		emptyView: EmptyGradoView,
 		handleGradoSelect: function (args) {
 			this.trigger('set:grado', args);
 		}
@@ -77,8 +91,9 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		events: {
 			'click .nivelNombre': 'selectNivel'
 		},
-		template: _.template('<div class="nivelNombre"><%=nivelNombre%></div>'),
-		selectNivel: function () {
+		template: _.template('<a href="#" class="nivelNombre"><%=nivelNombre%></a>'),
+		selectNivel: function (evt) {
+			evt.preventDefault();
 			this.model.trigger('select:nivel', {
 				model: this.model
 			});
@@ -112,6 +127,7 @@ define(['underscore', 'marionette', 'templates/app-templates',
 			});
 			
 			this.seccionListView = new SeccionListView ({
+				model: new GradoModel,
 				collection: this.seccionCollection
 			});
 		},
@@ -138,6 +154,8 @@ define(['underscore', 'marionette', 'templates/app-templates',
 							return;
 						}
 						me.seccionListView.gradoModel = me.gradoCollection.at(0);
+						me.seccionListView.model.set(me.gradoCollection.at(0).toJSON());
+						me.seccionListView.render();
 						me.seccionCollection.fetch({
 							data: {
 								idGrado: me.gradoCollection.at(0).get('idGrado')
@@ -149,6 +167,8 @@ define(['underscore', 'marionette', 'templates/app-templates',
 			
 			this.gradoListView.on('set:grado', function (args) {
 				me.seccionListView.gradoModel = args.model;
+				me.seccionListView.model.set(args.model.toJSON());
+				me.seccionListView.render();
 				me.seccionCollection.fetch({
 					data: {
 						idGrado: args.model.get('idGrado')
@@ -170,6 +190,8 @@ define(['underscore', 'marionette', 'templates/app-templates',
 								return;
 							}
 							me.seccionListView.gradoModel = me.gradoCollection.at(0);
+							me.seccionListView.model.set(me.gradoCollection.at(0).toJSON());
+							me.seccionListView.render();
 							me.seccionCollection.fetch({
 								data: {
 									idGrado: me.gradoCollection.at(0).get('idGrado')

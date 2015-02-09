@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.inkasoft.edustat.bean.InstitucionEducativaBean;
 import org.inkasoft.edustat.bean.PeriodoAcademicoBean;
-import org.inkasoft.edustat.model.InstitucionEducativa;
 import org.inkasoft.edustat.model.PeriodoAcademico;
 import org.inkasoft.edustat.repository.PeriodoAcademicoRepository;
 import org.inkasoft.edustat.service.PeriodoAcademicoService;
@@ -22,8 +21,8 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
     @Override
     public PeriodoAcademicoBean aperturarPeriodoAcademico(PeriodoAcademico periodoAcademico) throws PeriodoAcademicoAbiertoYaExisteException {
         List<PeriodoAcademico> periodosAbiertos = periodoAcademicoRepository.findByInstitucionEducativaIdIeAndPeriodoEstado(periodoAcademico.getInstitucionEducativa().getIdIe(), PeriodoAcademicoEstado.PERIODO_ABIERTO.getCodEstado());
-        if (periodosAbiertos.size() > 0) {
-            throw new PeriodoAcademicoAbiertoYaExisteException("El periodo "+periodoAcademico.getPeriodoNombre()+" para la institución educativa "+periodoAcademico.getInstitucionEducativa().getIeNombre()+" no puede ser creado por que ya existe un periodo abierto en el sistema.");
+        if (!periodosAbiertos.isEmpty()) {
+            throw new PeriodoAcademicoAbiertoYaExisteException("El periodo "+periodoAcademico.getPeriodoNombre()+" para la instituciÃ³n educativa "+periodoAcademico.getInstitucionEducativa().getIeNombre()+" no puede ser creado por que ya existe un periodo abierto en el sistema.");
         }
         periodoAcademico.setPeriodoEstado(PeriodoAcademicoEstado.PERIODO_ABIERTO.getCodEstado());
         periodoAcademicoRepository.save(periodoAcademico);

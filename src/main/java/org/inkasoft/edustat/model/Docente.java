@@ -20,9 +20,6 @@ public class Docente implements Serializable {
     @Column(name="id_docente")
     private int idDocente;
 
-    @Column(name="persona_id_persona")
-    private int personaIdPersona;
-
     //bi-directional many-to-one association to AreaHasDocente
     @OneToMany(mappedBy="docente")
     private List<AreaHasDocente> areaHasDocentes;
@@ -48,14 +45,6 @@ public class Docente implements Serializable {
 
     public void setIdDocente(int idDocente) {
         this.idDocente = idDocente;
-    }
-
-    public int getPersonaIdPersona() {
-        return this.personaIdPersona;
-    }
-
-    public void setPersonaIdPersona(int personaIdPersona) {
-        this.personaIdPersona = personaIdPersona;
     }
 
     public List<AreaHasDocente> getAreaHasDocentes() {

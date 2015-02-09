@@ -16,6 +16,8 @@ public class PeriodoAcademicoBean implements Serializable {
 
     private String periodoNombre;
     
+    private String periodoEstado;
+    
     private InstitucionEducativaBean institucionEducativa;
 
     public int getIdPeriodo() {
@@ -54,6 +56,14 @@ public class PeriodoAcademicoBean implements Serializable {
         return institucionEducativa;
     }
 
+    public String getPeriodoEstado() {
+        return periodoEstado;
+    }
+
+    public void setPeriodoEstado(String periodoEstado) {
+        this.periodoEstado = periodoEstado;
+    }
+
     public void setInstitucionEducativa(
             InstitucionEducativaBean institucionEducativa) {
         this.institucionEducativa = institucionEducativa;
@@ -69,6 +79,7 @@ public class PeriodoAcademicoBean implements Serializable {
         periodoAcademicoBean.setPeriodoFfin(periodoAcademicoBean.getPeriodoFfin());
         periodoAcademicoBean.setPeriodoFinicio(periodoAcademico.getPeriodoFinicio());
         periodoAcademicoBean.setPeriodoNombre(periodoAcademico.getPeriodoNombre());
+        periodoAcademicoBean.setPeriodoEstado(periodoAcademico.getPeriodoEstado());
         
         return periodoAcademicoBean;
     }
