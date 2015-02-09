@@ -32,6 +32,9 @@ public class PeriodoAcademico implements Serializable {
     @Column(name="periodo_nombre")
     private String periodoNombre;
 
+    @Column(name="periodo_estado")
+    private String periodoEstado;
+
     //bi-directional many-to-one association to Clase
     @OneToMany(mappedBy="periodoAcademico")
     private List<Clase> clases;
@@ -74,6 +77,14 @@ public class PeriodoAcademico implements Serializable {
 
     public void setPeriodoNombre(String periodoNombre) {
         this.periodoNombre = periodoNombre;
+    }
+
+    public String getPeriodoEstado() {
+        return periodoEstado;
+    }
+
+    public void setPeriodoEstado(String periodoEstado) {
+        this.periodoEstado = periodoEstado;
     }
 
     public List<Clase> getClases() {

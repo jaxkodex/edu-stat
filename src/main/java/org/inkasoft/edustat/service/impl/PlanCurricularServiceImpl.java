@@ -55,7 +55,9 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
         seccionBeans = new ArrayList<SeccionBean>();
         secciones = seccionRepository.findAll();
         for (Seccion seccion : secciones) {
-            seccionBeans.add(SeccionBean.transformToBean(seccion));
+            SeccionBean bean = SeccionBean.transformToBean(seccion);
+            bean.setGrado(GradoBean.transformToBean(seccion.getGrado()));
+            seccionBeans.add(bean);
         }
         return seccionBeans;
     }
@@ -79,7 +81,9 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
     public SeccionBean loadSeccionById(Integer idSeccion) {
         Seccion seccion;
         seccion = seccionRepository.findOne(idSeccion);
-        return SeccionBean.transformToBean(seccion);
+        SeccionBean bean = SeccionBean.transformToBean(seccion);
+        bean.setGrado(GradoBean.transformToBean(seccion.getGrado()));
+        return bean;
     }
 
     public NivelBean createNivel(Nivel nivel) {
@@ -107,7 +111,9 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
     }
 
     public SeccionBean updateSeccion(Seccion seccion) {
-        return SeccionBean.transformToBean(seccionRepository.save(seccion));
+        SeccionBean bean = SeccionBean.transformToBean(seccion);
+        bean.setGrado(GradoBean.transformToBean(seccion.getGrado()));
+        return bean;
     }
 
     public void deleteNivel(Integer idNivel) {

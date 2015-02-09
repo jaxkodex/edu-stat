@@ -5,3 +5,9 @@
 .editing .edit {
 	display: block;
 }
+.btn-link.btn-delete {
+    color: #d9534f;
+}
+.btn-link.btn-delete:hover {
+	color: #c9302c;
+}

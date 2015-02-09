@@ -1,7 +1,11 @@
 package org.inkasoft.edustat.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.inkasoft.edustat.model.EvaluadorPK;
+
 import java.util.List;
 
 
@@ -15,11 +19,10 @@ import java.util.List;
 public class Evaluador implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="id_evaluador")
-    private int idEvaluador;
+    @EmbeddedId
+    private EvaluadorPK id;
 
+    @Column(name="evaluador_estado")
     private byte estado;
 
     //bi-directional many-to-one association to EvaluacionDocente
@@ -28,21 +31,23 @@ public class Evaluador implements Serializable {
 
     //bi-directional many-to-one association to Docente
     @ManyToOne
+    @JoinColumn(name="docente_id_docente",referencedColumnName="id_docente", insertable=false, updatable=false)
     private Docente docente;
 
     //bi-directional many-to-one association to Monitoreo
     @ManyToOne
+    @JoinColumn(name="monitoreo_id_monitoreo",referencedColumnName="id_monitoreo", insertable=false, updatable=false)
     private Monitoreo monitoreo;
 
     public Evaluador() {
     }
 
-    public int getIdEvaluador() {
-        return this.idEvaluador;
+    public EvaluadorPK getIdEvaluador() {
+        return this.id;
     }
 
-    public void setIdEvaluador(int idEvaluador) {
-        this.idEvaluador = idEvaluador;
+    public void setIdEvaluador(EvaluadorPK id) {
+        this.id = id;
     }
 
     public byte getEstado() {

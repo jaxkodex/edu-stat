@@ -21,7 +21,13 @@ log4j.logger.org.springframework=OFF
 log4j.logger.org.inkasoft.edustat=DEBUG, stdout
 
 #log4j.appender.stdout.Threshold=INFO
+ 
+ 
+<<<<<<< HEAD
+=======
+#log4j.logger.org.springframework=OFF
 
+>>>>>>> origin/master
 #HIBERNATE LOGS
 
 #log4j.logger.org.hibernate=OFF
