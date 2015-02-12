@@ -21,11 +21,11 @@ public class PeriodoAcademico implements Serializable {
     @Column(name="id_periodo")
     private int idPeriodo;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name="periodo_ffin")
     private Date periodoFfin;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name="periodo_finicio")
     private Date periodoFinicio;
 

@@ -1,4 +1,4 @@
-<td>
+<td class="editable">
     <span class="view"><%=periodoNombre%></span>
     <input type="text" class="form-control input-sm edit" name="periodoNombre" value="<%=periodoNombre%>" />
 </td>
@@ -18,6 +18,6 @@
     </select>
 </td>
 <td>
-    <button class="btn btn-link btn-xs btn-save"><span class="glyphicon glyphicon glyphicon-floppy-disk"></span></button>
+    <button class="btn btn-link btn-xs btn-save edit"><span class="glyphicon glyphicon glyphicon-floppy-disk"></span></button>
     <button class="btn btn-link btn-xs btn-delete"><span class="glyphicon glyphicon-remove"></span></button>
 </td>

@@ -76,7 +76,7 @@ public class PeriodoAcademicoBean implements Serializable {
         PeriodoAcademicoBean periodoAcademicoBean = new PeriodoAcademicoBean();
         
         periodoAcademicoBean.setIdPeriodo(periodoAcademico.getIdPeriodo());
-        periodoAcademicoBean.setPeriodoFfin(periodoAcademicoBean.getPeriodoFfin());
+        periodoAcademicoBean.setPeriodoFfin(periodoAcademico.getPeriodoFfin());
         periodoAcademicoBean.setPeriodoFinicio(periodoAcademico.getPeriodoFinicio());
         periodoAcademicoBean.setPeriodoNombre(periodoAcademico.getPeriodoNombre());
         periodoAcademicoBean.setPeriodoEstado(periodoAcademico.getPeriodoEstado());

@@ -76,7 +76,7 @@ public class PersonaBean implements Serializable {
         
         personaBean.setPersonaAmaterno(persona.getPersonaAmaterno());
         personaBean.setPersonaApaterno(persona.getPersonaApaterno());
-        personaBean.setPersonaPnombre(personaBean.getPersonaPnombre());
+        personaBean.setPersonaPnombre(persona.getPersonaPnombre());
         personaBean.setPersonaSnombre(persona.getPersonaSnombre());
         
         return personaBean;

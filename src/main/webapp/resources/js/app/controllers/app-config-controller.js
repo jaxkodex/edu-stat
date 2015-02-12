@@ -4,13 +4,15 @@ define(['web-app',
         'collections/docente-collection', 'collections/nivel-collection',
         'collections/grado-collection', 'collections/periodoacademico-collection', 
         'views/app-ie', 'views/app-docentelist', 'views/app-docenteform', 'views/app-nivel',
-        'views/app-grado', 'views/app-seccionlist', 'views/app-periodoacademico'], function (app,
+        'views/app-grado', 'views/app-seccionlist', 'views/app-periodoacademico',
+        'backbone'], function (app,
         		InstitucionEducativaModel, DocenteModel, NivelModel,
         		GradoModel, PeriodoAcademicoModel,
         		DocenteCollection, NivelCollection,
         		GradoCollection, PeriodoAcademicoCollection,
         		IeDataView, DocenteListView, DocenteFormView, NivelView,
-        		GradoView, SeccionListView, PeriodoAcademicoView) {
+        		GradoView, SeccionListView, PeriodoAcademicoView,
+        		Backbone) {
 	var docenteCollection, nivelCollection, gradoCollection, periodoAcademicoCollection;
 	
 	gradoCollection = new GradoCollection;
@@ -52,10 +54,16 @@ define(['web-app',
 			});
 		},
 		showNewDocenteForm: function () {
-			var model = new DocenteModel;
+			var model, view, me;
+			me = this;
+			model = new DocenteModel;
 			docenteCollection.add(model);
-			var view = new DocenteFormView({
+			view = new DocenteFormView({
 				model: model
+			});
+			view.on('docente:saved', function () {
+				me.showDocenteList();
+				Backbone.history.navigate('config/docentes');
 			});
 			app.main.show(view);
 		},

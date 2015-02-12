@@ -6,19 +6,26 @@ define(['backbone', 'marionette',
     AperturaItemView = Marionette.ItemView.extend({
         tagName: 'tr',
         events: {
+			'dblclick .editable': 'editRow',
             'click .btn-delete': 'deleteMe',
             'click .btn-save': 'saveMe'
         },
         modelEvents: {
-        	'invalid': 'invalidEventHandler'
+        	'invalid': 'invalidEventHandler',
+        	'sync': 'render'
         },
         onRender: function () {
+        	this.$el.removeClass('editing');
             if (this.model.isNew()) {
                 this.$el.addClass('editing');
             }
         },
         template: AppTemplates.periodoAcademicoItemListTemplate,
-        deleteMe: function (evt) {
+        editRow: function (evt) {
+			this.$el.addClass('editing');
+			this.$('input').focus();
+		},
+		deleteMe: function (evt) {
             evt.preventDefault();
             this.model.destroy();
         },
@@ -31,7 +38,7 @@ define(['backbone', 'marionette',
                     periodoNombre: this.$('input[name=periodoNombre]').val().trim(),
                     periodoFinicio: moment(this.$('input[name=periodoFinicio]').val().trim()).toDate().getTime(),
                     periodoFfin: moment(this.$('input[name=periodoFfin]').val().trim()).toDate().getTime(),
-                    periodoEstado: $('input[name=periodoEstado').val()
+                    periodoEstado: this.$('select[name=periodoEstado]').val()
             };
             this.model.set(obj).save({}, {
             	error: function (model, response, options) {

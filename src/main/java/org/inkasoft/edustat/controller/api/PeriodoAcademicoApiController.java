@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,6 +53,37 @@ public class PeriodoAcademicoApiController {
         
         periodoAcademico.setInstitucionEducativa(sessionUser.getInstitucionEducativa());
         return periodoAcademicoService.aperturarPeriodoAcademico(periodoAcademico);
+    }
+    
+    @RequestMapping(value="/private/api/periodoacademico/{idPeriodo}", method=RequestMethod.PUT)
+    @ResponseBody
+    public PeriodoAcademicoBean update (@RequestBody PeriodoAcademico periodoAcademico, HttpServletRequest request) throws PeriodoAcademicoAbiertoYaExisteException {
+        HttpSession session;
+        Usuario sessionUser;
+        
+        session = request.getSession();
+        sessionUser = (Usuario) session.getAttribute("usuario");
+        
+        if (periodoAcademico.getInstitucionEducativa().getIdIe() != sessionUser.getInstitucionEducativa().getIdIe()) {
+        	return null;
+        }
+        //periodoAcademico.setInstitucionEducativa(sessionUser.getInstitucionEducativa());
+        return periodoAcademicoService.updatePeriodoAcademico(periodoAcademico);
+    }
+    
+    @RequestMapping(value="/private/api/periodoacademico/{idPeriodo}", method=RequestMethod.DELETE)
+    @ResponseBody
+    public String update (@PathVariable Integer idPeriodo, HttpServletRequest request) throws PeriodoAcademicoAbiertoYaExisteException {
+        HttpSession session;
+        Usuario sessionUser;
+        
+        session = request.getSession();
+        sessionUser = (Usuario) session.getAttribute("usuario");
+        PeriodoAcademicoBean periodoAcademicoBean = periodoAcademicoService.findById(idPeriodo);
+        if (sessionUser.getInstitucionEducativa().getIdIe() == periodoAcademicoBean.getInstitucionEducativa().getIdIe()) {
+        	periodoAcademicoService.delete(idPeriodo); 
+        }
+        return "OK";
     }
     
     @ExceptionHandler(value=PeriodoAcademicoAbiertoYaExisteException.class)

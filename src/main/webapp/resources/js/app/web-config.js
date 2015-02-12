@@ -33,18 +33,23 @@ require.config({
 });
 
 require(['web-app',
-         'backbone',
+         'backbone', 'jquery',
          'collections/usuario-collection',
          'views/app-menu',
          'views/app-topbar',
          'routers/app-router',
          'routers/app-config-router',
          'controllers/app-user-controller',
-         'controllers/app-config-controller'], function (app, Backbone,
+         'controllers/app-config-controller'], function (app, Backbone, $,
         		 UserCollection, 
         		 AppMenuView, AppTopbarView,
         		 AppRouter, AppConfigRouter,
         		 userController, AppConfigController) {
+//	$(document).ajaxError(function (event, jqxhr, settings, thrownError) {
+//		console.log(jqxhr.status);
+//		console.log(event, jqxhr, settings, thrownError);
+//	});
+	
 	app.addInitializer(function () {
 		// workspace initialization
 		this.collections = this.collection || {};

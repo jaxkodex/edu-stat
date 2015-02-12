@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface DocenteRepository extends JpaRepository<Docente, Integer> {
     
     public List<Docente> findByInstitucionEducativaHasDocentesInstitucionEducativaIdIe (Integer idIe);
+    public List<Docente> findByPersonaPersonaDni (String personaDni);
 
 }

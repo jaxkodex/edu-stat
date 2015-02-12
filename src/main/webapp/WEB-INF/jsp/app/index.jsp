@@ -18,13 +18,19 @@
 	</script>
 </head>
 <body>
-	<div id="main-container" class="container">
+	<div class="header">
 		<div class="row">
-			<div id="menu-wrapper" class="col-sm-2"></div>
-			<div class="col-sm-10">
-				<div class="row">
-					<div id="top-bar" class="col-sm-12"></div>
-					<div id="main" class="col-sm-12"></div>
+			<div id="top-bar" class="col-sm-12"></div>
+		</div>
+	</div>
+	<div id="main-container">
+		<div class="contents-wrapper">
+			<div id="menu-wrapper" class="pull-left"></div>
+			<div class="contents">
+				<div class="container-fluid">
+					<div class="row">
+						<div id="main" class="col-sm-12"></div>
+					</div>
 				</div>
 			</div>
 		</div>
