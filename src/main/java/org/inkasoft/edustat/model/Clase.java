@@ -19,6 +19,8 @@ public class Clase implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id_clase")
     private int idClase;
+    
+    private boolean habilitado;
 
     //bi-directional many-to-one association to AreaHasDocente
     @OneToMany(mappedBy="clase")
@@ -48,7 +50,15 @@ public class Clase implements Serializable {
         this.idClase = idClase;
     }
 
-    public List<AreaHasDocente> getAreaHasDocentes() {
+    public boolean isHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
+	}
+
+	public List<AreaHasDocente> getAreaHasDocentes() {
         return this.areaHasDocentes;
     }
 

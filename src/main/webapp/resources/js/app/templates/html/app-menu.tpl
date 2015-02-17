@@ -9,5 +9,5 @@
 	<li><a href="#config/nivel">Niveles</a></li>
     <li><a href="#config/grado">Grados</a></li>
     <li><a href="#config/seccion">Secciones</a></li>
-    <li><a href="#config/clase">Clases</a></li>
+    <li><a href="#config/clases">Clases</a></li>
 </ul>

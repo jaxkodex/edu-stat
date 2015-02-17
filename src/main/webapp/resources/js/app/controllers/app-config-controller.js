@@ -5,6 +5,7 @@ define(['web-app',
         'collections/grado-collection', 'collections/periodoacademico-collection', 
         'views/app-ie', 'views/app-docentelist', 'views/app-docenteform', 'views/app-nivel',
         'views/app-grado', 'views/app-seccionlist', 'views/app-periodoacademico',
+        'views/app-clases',
         'backbone'], function (app,
         		InstitucionEducativaModel, DocenteModel, NivelModel,
         		GradoModel, PeriodoAcademicoModel,
@@ -12,6 +13,7 @@ define(['web-app',
         		GradoCollection, PeriodoAcademicoCollection,
         		IeDataView, DocenteListView, DocenteFormView, NivelView,
         		GradoView, SeccionListView, PeriodoAcademicoView,
+        		ClasesView,
         		Backbone) {
 	var docenteCollection, nivelCollection, gradoCollection, periodoAcademicoCollection;
 	
@@ -106,6 +108,15 @@ define(['web-app',
 		showSeccionView: function () {
 			var view = new SeccionListView;
 			app.main.show(view);
+		},
+		showClasesView: function () {
+			periodoAcademicoCollection.fetch({
+				reset: true,
+				success: function () {
+					var view = new ClasesView;
+					app.main.show(view);
+				}
+			});
 		}
 	};
 });

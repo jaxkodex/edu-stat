@@ -18,9 +18,12 @@ define(function (require) {
 		// Secciones
 		mantenimientoSeccionListTemplate: require('tpl!templates/html/app-seccionlist.tpl'),
 		
-		// Periodos Acad�micos
+		// Periodos Académicos
 		periodoAcademicoListTemplate: require('tpl!templates/html/app-periodoacademico.tpl'),
 		periodoAcademicoItemListTemplate: require('tpl!templates/html/app-periodoacademicoitem.tpl'),
+		
+		// Clases
+		clasesTemplate: require('tpl!templates/html/app-clases.tpl'),
 		
 		menuTemplate: require('tpl!templates/html/app-menu.tpl'),
 		topbarTemplate: require('tpl!templates/html/app-topbar.tpl'),
