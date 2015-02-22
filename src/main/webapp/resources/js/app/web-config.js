@@ -27,6 +27,7 @@ require.config({
 		bootstrap: '../libs/bootstrap.min',
 		moment: '../libs/moment.min',
 		marionette: '../libs/backbone.marionette',
+		highcharts: '../libs/highcharts',
 		tpl: '../libs/tpl'
 	},
 	urlArgs: "bust=" + (new Date()).getTime()

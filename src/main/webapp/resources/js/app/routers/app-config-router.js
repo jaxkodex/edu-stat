@@ -9,7 +9,10 @@ define(['marionette'], function (Marionette) {
 			'config/nivel': 'showNivelView',
 			'config/grado': 'showGradoView',
 			'config/seccion': 'showSeccionView',
-			'config/clases': 'showClasesView'
+			'config/clases': 'showClasesView',
+			'config/fichamonitoreo': 'showFichaDeMonitoreoListConfigView',
+			'config/newfichamonitoreo': 'showNewFichaDeMonitoreoConfigView',
+			'config/cargasiagie': 'showCargaSiagieFormView'
 		}
 	});
 });

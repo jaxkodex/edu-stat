@@ -23,6 +23,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
+		    <div class="text-center"><h3>edustats</h3></div>
 			<c:if test="${error != null}">
 			<div class="alert alert-danger">
 			<p>La combinación Usuario/Contraseña no es correcta.</p>

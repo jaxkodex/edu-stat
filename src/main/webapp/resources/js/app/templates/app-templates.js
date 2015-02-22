@@ -25,6 +25,13 @@ define(function (require) {
 		// Clases
 		clasesTemplate: require('tpl!templates/html/app-clases.tpl'),
 		
+		// Monitoreos
+		fichaMonitoreoListTemplate: require('tpl!templates/html/app-fichamonitoreolist.tpl'),
+		fichaMonitoreoFormTemplate: require('tpl!templates/html/app-fichamonitoreoform.tpl'),
+		
+		// Carga SIAGIE
+		cargaSiagieFormTemplate: require('tpl!templates/html/app-cargasiagie.tpl'),
+		
 		menuTemplate: require('tpl!templates/html/app-menu.tpl'),
 		topbarTemplate: require('tpl!templates/html/app-topbar.tpl'),
 		userprofileTemplate: require('tpl!templates/html/app-userprofile.tpl'),

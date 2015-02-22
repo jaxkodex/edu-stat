@@ -5,7 +5,8 @@ define(['web-app',
         'collections/grado-collection', 'collections/periodoacademico-collection', 
         'views/app-ie', 'views/app-docentelist', 'views/app-docenteform', 'views/app-nivel',
         'views/app-grado', 'views/app-seccionlist', 'views/app-periodoacademico',
-        'views/app-clases',
+        'views/app-clases', 'views/app-config-fichamonitoreo', 'views/app-config-fichamonitoreo-form',
+        'views/app-config-cargasigie-form',
         'backbone'], function (app,
         		InstitucionEducativaModel, DocenteModel, NivelModel,
         		GradoModel, PeriodoAcademicoModel,
@@ -13,7 +14,8 @@ define(['web-app',
         		GradoCollection, PeriodoAcademicoCollection,
         		IeDataView, DocenteListView, DocenteFormView, NivelView,
         		GradoView, SeccionListView, PeriodoAcademicoView,
-        		ClasesView,
+        		ClasesView, AppConfigFichaMonitoreoListView, AppConfigFichaMonitoreoFormView,
+        		AppConfigCargaSiagieFormView,
         		Backbone) {
 	var docenteCollection, nivelCollection, gradoCollection, periodoAcademicoCollection;
 	
@@ -117,6 +119,26 @@ define(['web-app',
 					app.main.show(view);
 				}
 			});
+		},
+		showFichaDeMonitoreoListConfigView: function () {
+			var me, view;
+			me = this;
+			view = new AppConfigFichaMonitoreoListView;
+			app.main.show(view);
+			view.on('go:new:fichamonitoreo', function () {
+				me.showNewFichaDeMonitoreoConfigView();
+				Backbone.history.navigate('config/newfichamonitoreo');
+			});
+		},
+		showNewFichaDeMonitoreoConfigView: function () {
+			var view;
+			view = new AppConfigFichaMonitoreoFormView;
+			app.main.show(view);
+		},
+		showCargaSiagieFormView: function () {
+			var view;
+			view = new AppConfigCargaSiagieFormView;
+			app.main.show(view);
 		}
 	};
 });
