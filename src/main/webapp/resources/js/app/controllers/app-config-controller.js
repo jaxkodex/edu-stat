@@ -115,7 +115,9 @@ define(['web-app',
 			periodoAcademicoCollection.fetch({
 				reset: true,
 				success: function () {
-					var view = new ClasesView;
+					var view = new ClasesView({
+						collection: periodoAcademicoCollection
+					});
 					app.main.show(view);
 				}
 			});

@@ -96,6 +96,9 @@ public class PlanCurricularController {
     @RequestMapping(value={"/private/api/seccion"}, method=RequestMethod.GET)
     @ResponseBody
     public List<SeccionBean> listSecciones (@RequestParam Integer idGrado) {
+    	if (idGrado == null) {
+    		return planCurricularService.listAllSeccion();
+    	}
         return planCurricularService.listAllSeccion(idGrado);
     }
     

@@ -22,6 +22,9 @@ public class Seccion implements Serializable {
     @Column(name = "seccion_nombre")
     private String seccionNombre;
 
+    @Column(name = "seccion_estado")
+    private String seccionEstado;
+
     // bi-directional many-to-one association to Clase
     @OneToMany(mappedBy = "seccion")
     private List<Clase> clases;
@@ -49,7 +52,15 @@ public class Seccion implements Serializable {
         this.seccionNombre = seccionNombre;
     }
 
-    public List<Clase> getClases() {
+    public String getSeccionEstado() {
+		return seccionEstado;
+	}
+
+	public void setSeccionEstado(String seccionEstado) {
+		this.seccionEstado = seccionEstado;
+	}
+
+	public List<Clase> getClases() {
         return this.clases;
     }
 

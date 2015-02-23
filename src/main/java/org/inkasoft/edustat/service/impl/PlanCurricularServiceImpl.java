@@ -62,6 +62,19 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
         return seccionBeans;
     }
 
+    public List<SeccionBean> listAllActiveSeccion() {
+        List<SeccionBean> seccionBeans;
+        List<Seccion> secciones;
+        seccionBeans = new ArrayList<SeccionBean>();
+        secciones = seccionRepository.findAll();
+        for (Seccion seccion : secciones) {
+            SeccionBean bean = SeccionBean.transformToBean(seccion);
+            bean.setGrado(GradoBean.transformToBean(seccion.getGrado()));
+            seccionBeans.add(bean);
+        }
+        return seccionBeans;
+    }
+
     public NivelBean loadNivelById(Integer idNivel) {
         Nivel nivel;
         nivel = nivelRepository.findOne(idNivel);

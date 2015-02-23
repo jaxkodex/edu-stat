@@ -11,37 +11,27 @@ import org.inkasoft.edustat.model.Seccion;
 
 public interface PlanCurricularService {
 
+	// Para Niveles
     public List<NivelBean> listAllNivel();
-
-    public List<GradoBean> listAllGrado();
-
-    public List<GradoBean> listAllGrado(Integer idNivel);
-
-    public List<SeccionBean> listAllSeccion();
-
-    public List<SeccionBean> listAllSeccion(Integer idGrado);
-
     public NivelBean loadNivelById(Integer idNivel);
-
-    public GradoBean loadGradoById(Integer idGrado);
-
-    public SeccionBean loadSeccionById(Integer idSeccion);
-
     public NivelBean createNivel(Nivel nivel);
-
-    public GradoBean createGrado(Grado grado);
-
-    public SeccionBean createSeccion(Seccion seccion);
-
     public NivelBean updateNivel(Nivel nivel);
-
-    public GradoBean updateGrado(Grado grado);
-
-    public SeccionBean updateSeccion(Seccion seccion);
-
     public void deleteNivel(Integer idNivel);
-
+    
+    // Para Grado
+    public List<GradoBean> listAllGrado();
+    public List<GradoBean> listAllGrado(Integer idNivel);
+    public GradoBean loadGradoById(Integer idGrado);
+    public GradoBean createGrado(Grado grado);
+    public GradoBean updateGrado(Grado grado);
     public void deleteGrado(Integer idGrado);
-
+    
+    // Para secciones
+    public List<SeccionBean> listAllSeccion();
+    public List<SeccionBean> listAllActiveSeccion();
+    public List<SeccionBean> listAllSeccion(Integer idGrado);
+    public SeccionBean loadSeccionById(Integer idSeccion);
+    public SeccionBean createSeccion(Seccion seccion);
+    public SeccionBean updateSeccion(Seccion seccion);
     public void deleteSeccion(Integer idSeccion);
 }

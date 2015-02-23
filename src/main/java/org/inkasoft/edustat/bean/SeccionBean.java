@@ -11,6 +11,8 @@ public class SeccionBean implements Serializable {
 
     private String seccionNombre;
     
+    private String seccionEstado;
+    
     private GradoBean grado;
 
     public Integer getIdSeccion() {
@@ -29,7 +31,15 @@ public class SeccionBean implements Serializable {
         this.seccionNombre = seccionNombre;
     }
 
-    public GradoBean getGrado() {
+    public String getSeccionEstado() {
+		return seccionEstado;
+	}
+
+	public void setSeccionEstado(String seccionEstado) {
+		this.seccionEstado = seccionEstado;
+	}
+
+	public GradoBean getGrado() {
         return grado;
     }
 
@@ -47,6 +57,7 @@ public class SeccionBean implements Serializable {
         
         seccionBean.setIdSeccion(seccion.getIdSeccion());
         seccionBean.setSeccionNombre(seccion.getSeccionNombre());
+        seccionBean.setSeccionEstado(seccion.getSeccionEstado());
         return seccionBean;
     }
 }
