@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.inkasoft.edustat.bean.ClaseBean;
+import org.inkasoft.edustat.bean.GradoBean;
+import org.inkasoft.edustat.bean.NivelBean;
 import org.inkasoft.edustat.bean.PeriodoAcademicoBean;
 import org.inkasoft.edustat.bean.SeccionBean;
 import org.inkasoft.edustat.bean.TurnoBean;
@@ -32,12 +34,15 @@ public class ClaseServiceImpl implements ClaseService {
 
 	@Override
 	public List<ClaseBean> cargarClasesPorPeriodo(Integer idPeriodo) {
-		List<Clase> clases = claseRepository.findByPeriodoAcademicoIdPeriodo(idPeriodo);
+		//List<Clase> clases = claseRepository.findByPeriodoAcademicoIdPeriodo(idPeriodo);
+		List<Clase> clases = claseRepository.findByPeriodoAcademicoIdPeriodoOrderByTurnoTurnoNameAscSeccionGradoNivelNivelNombreAsc(idPeriodo);
 		List<ClaseBean> results = new ArrayList<ClaseBean>();
 		for (Clase clase : clases) {
 			ClaseBean claseBean = ClaseBean.transformToBean(clase);
 			claseBean.setPeriodoAcademico(PeriodoAcademicoBean.transformToBean(clase.getPeriodoAcademico()));
 			claseBean.setSeccion(SeccionBean.transformToBean(clase.getSeccion()));
+			claseBean.getSeccion().setGrado(GradoBean.transformToBean(clase.getSeccion().getGrado()));
+			claseBean.getSeccion().getGrado().setNivel(NivelBean.transformToBean(clase.getSeccion().getGrado().getNivel()));
 			claseBean.setTurno(TurnoBean.transformToBean(clase.getTurno()));
 			results.add(claseBean);
 		}
@@ -74,10 +79,22 @@ public class ClaseServiceImpl implements ClaseService {
 			ClaseBean claseBean = ClaseBean.transformToBean(clase);
 			claseBean.setPeriodoAcademico(PeriodoAcademicoBean.transformToBean(clase.getPeriodoAcademico()));
 			claseBean.setSeccion(SeccionBean.transformToBean(clase.getSeccion()));
+			claseBean.getSeccion().setGrado(GradoBean.transformToBean(clase.getSeccion().getGrado()));
+			claseBean.getSeccion().getGrado().setNivel(NivelBean.transformToBean(clase.getSeccion().getGrado().getNivel()));
 			claseBean.setTurno(TurnoBean.transformToBean(clase.getTurno()));
 			results.add(claseBean);
 		}
 		return results;
+	}
+
+	@Override
+	public ClaseBean actualizarClase(Clase clase) {
+		claseRepository.save(clase);
+		ClaseBean claseBean = ClaseBean.transformToBean(clase);
+		claseBean.setPeriodoAcademico(PeriodoAcademicoBean.transformToBean(clase.getPeriodoAcademico()));
+		claseBean.setSeccion(SeccionBean.transformToBean(clase.getSeccion()));
+		claseBean.setTurno(TurnoBean.transformToBean(clase.getTurno()));
+		return claseBean;
 	}
 
 }

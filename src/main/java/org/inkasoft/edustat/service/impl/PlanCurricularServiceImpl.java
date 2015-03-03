@@ -13,6 +13,7 @@ import org.inkasoft.edustat.repository.GradoRepository;
 import org.inkasoft.edustat.repository.NivelRepository;
 import org.inkasoft.edustat.repository.SeccionRepository;
 import org.inkasoft.edustat.service.PlanCurricularService;
+import org.inkasoft.edustat.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +67,7 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
         List<SeccionBean> seccionBeans;
         List<Seccion> secciones;
         seccionBeans = new ArrayList<SeccionBean>();
-        secciones = seccionRepository.findAll();
+        secciones = seccionRepository.findBySeccionEstado(Constantes.ACTIVO);
         for (Seccion seccion : secciones) {
             SeccionBean bean = SeccionBean.transformToBean(seccion);
             bean.setGrado(GradoBean.transformToBean(seccion.getGrado()));
@@ -124,7 +125,8 @@ public class PlanCurricularServiceImpl implements PlanCurricularService {
     }
 
     public SeccionBean updateSeccion(Seccion seccion) {
-        SeccionBean bean = SeccionBean.transformToBean(seccion);
+    	seccion.setGrado(seccionRepository.findOne(seccion.getIdSeccion()).getGrado());
+        SeccionBean bean = SeccionBean.transformToBean(seccionRepository.save(seccion));
         bean.setGrado(GradoBean.transformToBean(seccion.getGrado()));
         return bean;
     }

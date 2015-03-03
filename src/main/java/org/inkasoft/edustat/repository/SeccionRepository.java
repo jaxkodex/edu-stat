@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SeccionRepository extends JpaRepository<Seccion, Integer> {
 
-    public List<Seccion> findByGradoIdGrado(Integer idGrado);
-    
+    public List<Seccion> findByGradoIdGrado (Integer idGrado);
+    public List<Seccion> findBySeccionEstado (String estado);
 
 }

@@ -17,8 +17,12 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		modelEvents: {
 			'change': 'render'
 		},
-		className: 'row',
-		template: _.template('<div style="padding-top: 4px" class="editable col-sm-12"><span class="view"><%=seccionNombre%></span><input class="form-control input-sm edit" type="text" value="<%=seccionNombre%>" /><button class="btn btn-sm btn-danger delete edit"><span class="glyphicon glyphicon-remove"></span></button></div>'),
+		//className: 'row',
+		//template: _.template('<div style="padding-top: 4px" class="editable col-sm-12"><span class="view"><%=seccionNombre%></span><input class="form-control input-sm edit" type="text" value="<%=seccionNombre%>" /><button class="btn btn-link btn-xs btn-danger btn-delete delete edit"><span class="glyphicon glyphicon-remove"></span></button></div>'),
+		tagName: 'tr',
+		template: _.template('<td style="padding-top: 4px" class="editable"><span class="view"><%=seccionNombre%></span><input class="form-control input-sm edit" type="text" value="<%=seccionNombre%>" /></td>\
+				<td class="editable"><span class="view"><%= seccionEstado == \'A\' ? \'Activo\' : \'Inactivo\'%></span><input class="edit" type="checkbox" <%= seccionEstado == \'A\' ? \'checked\' : \'\'%> /></td>\
+				<td class="editable"><button class="btn btn-link btn-xs btn-danger btn-delete delete edit"><span class="glyphicon glyphicon-remove"></span></button></td>'),
 		onRender: function () {
 			if (_.isUndefined(this.model.id)) {
 				this.$el.addClass('editing');
@@ -30,9 +34,11 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		},
 		save: function (evt) {
 			if (evt.keyCode == 13) {
-				console.log(this.model.toJSON());
-				var value = this.$('input').val().trim();
-				this.model.save({ seccionNombre: value }, { wait: true });
+				var value = this.$('input[type=text]').val().trim();
+				this.model.save({
+					seccionNombre: value,
+					seccionEstado: this.$('input[type=checkbox]').prop('checked') ? 'A' : 'I'
+				}, { wait: true });
 				this.$el.removeClass('editing');
 			}
 		},
@@ -50,7 +56,9 @@ define(['underscore', 'marionette', 'templates/app-templates',
 		events: {
 			'click .add-seccion': 'handleAddSeccion'
 		},
-		template: _.template('<i><%=gradoNombre%></i><div class="row"><div style="padding-top: 5px;" class="col-sm-12 clearfix"><button class="add-seccion btn btn-xs btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span></button></div></div>'),
+		childViewContainer: 'tbody',
+		template: _.template('<i><%=gradoNombre%></i><div class="row"><div style="padding-top: 5px;" class="col-sm-12 clearfix"><button class="add-seccion btn btn-xs btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span></button></div>\
+				<table class="table"><tbody></tbody></table></div>'),
 		childView: SeccionItemListView,
 		emptyView: SeccionEmptyView,
 		handleAddSeccion: function () {

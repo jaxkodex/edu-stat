@@ -95,11 +95,15 @@ public class PlanCurricularController {
     
     @RequestMapping(value={"/private/api/seccion"}, method=RequestMethod.GET)
     @ResponseBody
-    public List<SeccionBean> listSecciones (@RequestParam Integer idGrado) {
-    	if (idGrado == null) {
-    		return planCurricularService.listAllSeccion();
+    public List<SeccionBean> listSecciones (@RequestParam(required=false) Integer idGrado, 
+    		@RequestParam(required=false) Boolean activo) {
+    	if (activo != null && activo) {
+    		return planCurricularService.listAllActiveSeccion();
     	}
-        return planCurricularService.listAllSeccion(idGrado);
+    	if (idGrado != null) {
+    		return planCurricularService.listAllSeccion(idGrado);
+    	}
+        return planCurricularService.listAllSeccion();
     }
     
     @RequestMapping(value={"/private/api/seccion/{idSeccion}"}, method=RequestMethod.GET)

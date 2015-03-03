@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UsuarioApiController {
     private static final Logger LOGGER = Logger.getLogger(UsuarioApiController.class);
     
-    @Autowired UsuarioService usuarioService;
-    @Autowired PersonaService personaService;
+    @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
+    private PersonaService personaService;
 
     @RequestMapping(value="/public/api/usuario", method=RequestMethod.GET)
     @ResponseBody
