@@ -3,6 +3,7 @@ package org.inkasoft.edustat.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.inkasoft.edustat.bean.ClaseBean;
 import org.inkasoft.edustat.bean.GradoBean;
 import org.inkasoft.edustat.bean.NivelBean;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClaseServiceImpl implements ClaseService {
+    private static final Logger LOGGER = Logger.getLogger(ClaseServiceImpl.class);
+    
 	@Autowired
 	private ClaseRepository claseRepository;
 	@Autowired
@@ -60,6 +63,7 @@ public class ClaseServiceImpl implements ClaseService {
 		List<Turno> turnos;
 		PeriodoAcademico periodoAcademico;
 		if (clases.isEmpty()) {
+		    LOGGER.debug("*Generar clases*");
 			periodoAcademico = periodoAcademicoRepository.findOne(idPeriodo);
 			turnos = turnoRepository.findAll();
 			secciones = seccionRepository.findAll();
@@ -74,6 +78,7 @@ public class ClaseServiceImpl implements ClaseService {
 				}
 			}
 			claseRepository.save(clases);
+			LOGGER.debug("Clases generadas: "+clases.size());
 		}
 		for (Clase clase : clases) {
 			ClaseBean claseBean = ClaseBean.transformToBean(clase);
