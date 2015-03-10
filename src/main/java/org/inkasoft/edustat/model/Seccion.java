@@ -53,14 +53,14 @@ public class Seccion implements Serializable {
     }
 
     public String getSeccionEstado() {
-		return seccionEstado;
-	}
+        return seccionEstado;
+    }
 
-	public void setSeccionEstado(String seccionEstado) {
-		this.seccionEstado = seccionEstado;
-	}
+    public void setSeccionEstado(String seccionEstado) {
+        this.seccionEstado = seccionEstado;
+    }
 
-	public List<Clase> getClases() {
+    public List<Clase> getClases() {
         return this.clases;
     }
 

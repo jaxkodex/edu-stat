@@ -51,14 +51,14 @@ public class Clase implements Serializable {
     }
 
     public boolean isHabilitado() {
-		return habilitado;
-	}
+        return habilitado;
+    }
 
-	public void setHabilitado(boolean habilitado) {
-		this.habilitado = habilitado;
-	}
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
+    }
 
-	public List<AreaHasDocente> getAreaHasDocentes() {
+    public List<AreaHasDocente> getAreaHasDocentes() {
         return this.areaHasDocentes;
     }
 

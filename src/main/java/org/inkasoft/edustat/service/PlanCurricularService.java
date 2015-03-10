@@ -11,7 +11,7 @@ import org.inkasoft.edustat.model.Seccion;
 
 public interface PlanCurricularService {
 
-	// Para Niveles
+    // Para Niveles
     public List<NivelBean> listAllNivel();
     public NivelBean loadNivelById(Integer idNivel);
     public NivelBean createNivel(Nivel nivel);

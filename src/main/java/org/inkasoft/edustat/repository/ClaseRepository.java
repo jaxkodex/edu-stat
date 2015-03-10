@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClaseRepository extends JpaRepository<Clase, Integer> {
 
-	public List<Clase> findByPeriodoAcademicoIdPeriodo (Integer idPeriodo);
-	public List<Clase> findByPeriodoAcademicoIdPeriodoOrderByTurnoTurnoNameAscSeccionGradoNivelNivelNombreAsc (Integer idPeriodo);
+    public List<Clase> findByPeriodoAcademicoIdPeriodo (Integer idPeriodo);
+    public List<Clase> findByPeriodoAcademicoIdPeriodoAndSeccionGradoNivelIdNivelAndTurnoIdTurno (Integer idPeriodo, Integer idNivel, Integer IdTurno);
+    public List<Clase> findByPeriodoAcademicoIdPeriodoOrderByTurnoTurnoNameAscSeccionGradoNivelNivelNombreAsc (Integer idPeriodo);
 }

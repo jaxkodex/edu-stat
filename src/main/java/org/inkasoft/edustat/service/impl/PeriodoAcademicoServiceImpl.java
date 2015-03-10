@@ -59,10 +59,9 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
 	@Override
 	public PeriodoAcademicoBean updatePeriodoAcademico(PeriodoAcademico periodoAcademico) throws PeriodoAcademicoAbiertoYaExisteException {
         List<PeriodoAcademico> periodosAbiertos = periodoAcademicoRepository.findByInstitucionEducativaIdIeAndPeriodoEstado(periodoAcademico.getInstitucionEducativa().getIdIe(), PeriodoAcademicoEstado.PERIODO_ABIERTO.getCodEstado());
-        if (!periodosAbiertos.isEmpty() && PeriodoAcademicoEstado.PERIODO_ABIERTO.getCodEstado().equals(periodoAcademico.getPeriodoEstado())) {
-        	if (periodosAbiertos.size() == 1 && periodosAbiertos.get(0).getIdPeriodo() != periodoAcademico.getIdPeriodo()) {
+        if ((!periodosAbiertos.isEmpty() && PeriodoAcademicoEstado.PERIODO_ABIERTO.getCodEstado().equals(periodoAcademico.getPeriodoEstado())) 
+        	&& (periodosAbiertos.size() == 1 && periodosAbiertos.get(0).getIdPeriodo() != periodoAcademico.getIdPeriodo())) {
         		throw new PeriodoAcademicoAbiertoYaExisteException("El periodo "+periodoAcademico.getPeriodoNombre()+" para la institución educativa "+periodoAcademico.getInstitucionEducativa().getIeNombre()+" no puede ser creado por que ya existe un periodo abierto en el sistema.");
-        	}
         }
         periodoAcademicoRepository.save(periodoAcademico);
         PeriodoAcademicoBean periodoBean = PeriodoAcademicoBean.transformToBean(periodoAcademico);

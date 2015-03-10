@@ -29,6 +29,7 @@ public class PeriodoAcademicoApiController {
     private static final Logger LOGGER = Logger.getLogger(PeriodoAcademicoApiController.class);
     @Autowired
     private PeriodoAcademicoService periodoAcademicoService;
+    private static final String USUARIO = "usuario";
 
     @RequestMapping(value="/private/api/periodoacademico", method=RequestMethod.GET)
     @ResponseBody
@@ -37,7 +38,7 @@ public class PeriodoAcademicoApiController {
         Usuario sessionUser;
         
         session = request.getSession();
-        sessionUser = (Usuario) session.getAttribute("usuario");
+        sessionUser = (Usuario) session.getAttribute(USUARIO);
         
         return periodoAcademicoService.listByInstitucionEducativa(sessionUser.getInstitucionEducativa().getIdIe());
     }
@@ -49,7 +50,7 @@ public class PeriodoAcademicoApiController {
         Usuario sessionUser;
         
         session = request.getSession();
-        sessionUser = (Usuario) session.getAttribute("usuario");
+        sessionUser = (Usuario) session.getAttribute(USUARIO);
         
         periodoAcademico.setInstitucionEducativa(sessionUser.getInstitucionEducativa());
         return periodoAcademicoService.aperturarPeriodoAcademico(periodoAcademico);
@@ -62,12 +63,11 @@ public class PeriodoAcademicoApiController {
         Usuario sessionUser;
         
         session = request.getSession();
-        sessionUser = (Usuario) session.getAttribute("usuario");
+        sessionUser = (Usuario) session.getAttribute(USUARIO);
         
         if (periodoAcademico.getInstitucionEducativa().getIdIe() != sessionUser.getInstitucionEducativa().getIdIe()) {
         	return null;
         }
-        //periodoAcademico.setInstitucionEducativa(sessionUser.getInstitucionEducativa());
         return periodoAcademicoService.updatePeriodoAcademico(periodoAcademico);
     }
     
@@ -78,7 +78,7 @@ public class PeriodoAcademicoApiController {
         Usuario sessionUser;
         
         session = request.getSession();
-        sessionUser = (Usuario) session.getAttribute("usuario");
+        sessionUser = (Usuario) session.getAttribute(USUARIO);
         PeriodoAcademicoBean periodoAcademicoBean = periodoAcademicoService.findById(idPeriodo);
         if (sessionUser.getInstitucionEducativa().getIdIe() == periodoAcademicoBean.getInstitucionEducativa().getIdIe()) {
         	periodoAcademicoService.delete(idPeriodo); 

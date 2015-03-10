@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.inkasoft.edustat.model.Usuario;
-import org.inkasoft.edustat.service.PersonaService;
 import org.inkasoft.edustat.service.UsuarioService;
 import org.inkasoft.edustat.util.exceptions.ApiControllerException;
 import org.inkasoft.edustat.util.exceptions.RestriccionSeguridadException;
@@ -26,8 +25,6 @@ public class UsuarioApiController {
     
     @Autowired
     private UsuarioService usuarioService;
-    @Autowired
-    private PersonaService personaService;
 
     @RequestMapping(value="/public/api/usuario", method=RequestMethod.GET)
     @ResponseBody

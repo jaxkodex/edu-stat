@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class EvaluadorPK implements Serializable {
     //default serial version id, required for serializable classes.
     private static final long serialVersionUID = 1L;
-    private static final int prime = 31;
-    private static final int base_hash = 17;
+    private static final int PRIME = 31;
+    private static final int BASE_HASH = 17;
 
     @Column(name="monitoreo_id_monitoreo", insertable=false, updatable=false)
     private int monitoreoIdMonitoreo;
@@ -49,9 +49,9 @@ public class EvaluadorPK implements Serializable {
     }
 
     public int hashCode() {
-        int hash = base_hash;
-        hash = hash * prime + this.monitoreoIdMonitoreo;
-        hash = hash * prime + this.docenteIdDocente;
+        int hash = BASE_HASH;
+        hash = hash * PRIME + this.monitoreoIdMonitoreo;
+        hash = hash * PRIME + this.docenteIdDocente;
         
         return hash;
     }

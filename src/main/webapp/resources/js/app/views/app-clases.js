@@ -6,12 +6,13 @@ define(['marionette', 'underscore',
 	var ClaseListView, ClaseItemListView, ClaseEmptyListView;
 	
 	ClaseEmptyListView = Marionette.ItemView.extend({
-		template: _.template('<div class="text-center text-muted"><i>Seleccione un periodo para comenzar.</i></div>')
+		tagName: 'tr',
+		template: _.template('<td colspan="5" class="text-center text-muted"><i>Seleccione un periodo para comenzar.</i></td>')
 	});
 	
 	ClaseItemListView = Marionette.ItemView.extend({
 		tagName: 'tr',
-		template: _.template('<td><%=turno.turnoName%></td><td><%=seccion.grado.nivel.nivelNombre%></td><td><%=seccion.grado.gradoNombre%></td><td><%=seccion.seccionNombre%></td><td><%=turno.turnoNombre%></td><td><input disabled type="checkbox" <% if (habilitado) {%>checked<% } %> /></td>')
+		template: _.template('<td><%=turno.turnoName%></td><td><%=seccion.grado.nivel.nivelNombre%></td><td><%=seccion.grado.gradoNombre%></td><td><%=seccion.seccionNombre%></td><td><input disabled type="checkbox" <% if (habilitado) {%>checked<% } %> /></td>')
 	});
 	
 	ClaseListView = Marionette.CompositeView.extend({
@@ -38,15 +39,18 @@ define(['marionette', 'underscore',
 		},
 		cargarClases: function (evt) {
 			evt.preventDefault();
-			var idPeriodo = this.$('#idPeriodo').val();
-			if (_.isNumber(idPeriodo*1)) {
-				this.claseCollection.fetch({
-					reset: true,
-					data: {
-						idPeriodo: idPeriodo
-					}
-				});
-			}
+			var idPeriodo, idNivel, idTurno;
+			idPeriodo = this.$('#idPeriodo').val();
+			idNivel = this.$('#idNivel').val();
+			idTurno = this.$('#idTurno').val();
+			this.claseCollection.fetch({
+				reset: true,
+				data: {
+					idPeriodo: idPeriodo,
+					idNivel: idNivel,
+					idTurno: idTurno
+				}
+			});
 		}
 	});
 });

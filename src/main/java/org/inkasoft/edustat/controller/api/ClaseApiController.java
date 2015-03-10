@@ -21,7 +21,14 @@ public class ClaseApiController {
 
 	@RequestMapping(value="/private/api/clase", method=RequestMethod.GET)
 	@ResponseBody
-	public List<ClaseBean> listClases (@RequestParam(required=false) Integer idPeriodo) {
+	public List<ClaseBean> listClases (@RequestParam(required=false) Integer idPeriodo,
+	        @RequestParam(required=false) Integer idNivel,
+	        @RequestParam(required=false) Integer idTurno) {
+	    
+	    if (idPeriodo != null && idNivel != null && idTurno != null) {
+	        return claseService.cargarClasesPorPeriodoTurnoNivel(idPeriodo, idNivel, idTurno);
+	    }
+	    
 		if (idPeriodo == null) {
 			return new ArrayList<ClaseBean>();
 		}
