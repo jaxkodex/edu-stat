@@ -32,14 +32,14 @@ public class SeccionBean implements Serializable {
     }
 
     public String getSeccionEstado() {
-		return seccionEstado;
-	}
+        return seccionEstado;
+    }
 
-	public void setSeccionEstado(String seccionEstado) {
-		this.seccionEstado = seccionEstado;
-	}
+    public void setSeccionEstado(String seccionEstado) {
+        this.seccionEstado = seccionEstado;
+    }
 
-	public GradoBean getGrado() {
+    public GradoBean getGrado() {
         return grado;
     }
 

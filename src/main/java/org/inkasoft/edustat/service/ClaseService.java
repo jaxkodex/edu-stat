@@ -13,4 +13,6 @@ public interface ClaseService {
     public List<ClaseBean> cargarClasesPorPeriodoTurnoNivel (Integer idPeriodo, Integer idNivel, Integer idTurno);
 
     public ClaseBean actualizarClase (Clase clase);
+    
+    public ClaseBean loadClase (Integer idClase);
 }

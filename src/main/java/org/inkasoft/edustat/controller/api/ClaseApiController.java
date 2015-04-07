@@ -8,6 +8,7 @@ import org.inkasoft.edustat.model.Clase;
 import org.inkasoft.edustat.service.ClaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +34,12 @@ public class ClaseApiController {
 			return new ArrayList<ClaseBean>();
 		}
 		return claseService.cargarClasesPorPeriodo(idPeriodo);
+	}
+	
+	@RequestMapping(value="/private/api/clase/{idClase}", method = RequestMethod.GET)
+	@ResponseBody
+	public ClaseBean loadClase (@PathVariable Integer idClase) {
+	    return claseService.loadClase(idClase);
 	}
 
 	@RequestMapping(value="/private/api/clase", method=RequestMethod.PUT)

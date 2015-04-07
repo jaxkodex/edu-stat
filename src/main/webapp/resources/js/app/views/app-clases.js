@@ -12,7 +12,7 @@ define(['marionette', 'underscore',
 	
 	ClaseItemListView = Marionette.ItemView.extend({
 		tagName: 'tr',
-		template: _.template('<td><%=turno.turnoName%></td><td><%=seccion.grado.nivel.nivelNombre%></td><td><%=seccion.grado.gradoNombre%></td><td><%=seccion.seccionNombre%></td><td><input disabled type="checkbox" <% if (habilitado) {%>checked<% } %> /></td>')
+		template: AppTemplates.clasesItemListTemplate
 	});
 	
 	ClaseListView = Marionette.CompositeView.extend({

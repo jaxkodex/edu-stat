@@ -1,32 +1,37 @@
 define(['web-app',
         'models/institucioneducativa-model', 'models/docente-model', 'models/nivel-model',
         'models/grado-model', 'models/periodoacademico-model',
+        'models/clase-model',
         'collections/docente-collection', 'collections/nivel-collection',
         'collections/grado-collection', 'collections/periodoacademico-collection',
-        'collections/turno-collection', 
+        'collections/turno-collection', 'collections/clase-collection',
         'views/app-ie', 'views/app-docentelist', 'views/app-docenteform', 'views/app-nivel',
         'views/app-grado', 'views/app-seccionlist', 'views/app-periodoacademico',
         'views/app-clases', 'views/app-config-fichamonitoreo', 'views/app-config-fichamonitoreo-form',
+        'views/app-claseform',
         'views/app-config-cargasigie-form',
-        'backbone'], function (app,
+        'backbone', 'underscore'], function (app,
                 InstitucionEducativaModel, DocenteModel, NivelModel,
                 GradoModel, PeriodoAcademicoModel,
+                ClaseModel,
                 DocenteCollection, NivelCollection,
                 GradoCollection, PeriodoAcademicoCollection,
-                TurnoCollection,
+                TurnoCollection, ClaseCollection,
                 IeDataView, DocenteListView, DocenteFormView, NivelView,
                 GradoView, SeccionListView, PeriodoAcademicoView,
                 ClasesView, AppConfigFichaMonitoreoListView, AppConfigFichaMonitoreoFormView,
+                ClaseFormView,
                 AppConfigCargaSiagieFormView,
-                Backbone) {
+                Backbone, _) {
     var docenteCollection, nivelCollection, gradoCollection, 
-        periodoAcademicoCollection, turnoCollection;
+        periodoAcademicoCollection, turnoCollection, claseCollection;
     
     gradoCollection = new GradoCollection;
     docenteCollection = new DocenteCollection;
     nivelCollection = new NivelCollection;
     periodoAcademicoCollection = new PeriodoAcademicoCollection;
     turnoCollection = new TurnoCollection;
+    claseCollection = new ClaseCollection;
     
     return {
         showIePage: function () {
@@ -139,6 +144,23 @@ define(['web-app',
                 	});
                 }
             });
+        },
+        showClaseFormView: function (idClase) {
+        	var me, clase, view;
+        	me = this;
+        	clase = claseCollection.get(idClase);
+        	if (_.isUndefined(clase)) {
+        		clase = new ClaseModel({
+        			idClase: idClase
+        		});
+        		claseCollection.add(clase);
+        	}
+        	clase.fetch({
+        		success: function () {
+        			view = new ClaseFormView;
+        			app.main.show(view);
+        		}
+        	});
         },
         showFichaDeMonitoreoListConfigView: function () {
             var me, view;

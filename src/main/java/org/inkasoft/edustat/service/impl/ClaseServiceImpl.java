@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.inkasoft.edustat.bean.ClaseBean;
 import org.inkasoft.edustat.bean.GradoBean;
+import org.inkasoft.edustat.bean.InstitucionEducativaBean;
 import org.inkasoft.edustat.bean.NivelBean;
 import org.inkasoft.edustat.bean.PeriodoAcademicoBean;
 import org.inkasoft.edustat.bean.SeccionBean;
@@ -139,6 +140,16 @@ public class ClaseServiceImpl implements ClaseService {
     @Override
     public ClaseBean actualizarClase(Clase clase) {
         claseRepository.save(clase);
+        ClaseBean claseBean = ClaseBean.transformToBean(clase);
+        claseBean.setPeriodoAcademico(PeriodoAcademicoBean.transformToBean(clase.getPeriodoAcademico()));
+        claseBean.setSeccion(SeccionBean.transformToBean(clase.getSeccion()));
+        claseBean.setTurno(TurnoBean.transformToBean(clase.getTurno()));
+        return claseBean;
+    }
+
+    @Override
+    public ClaseBean loadClase(Integer idClase) {
+        Clase clase = claseRepository.findOne(idClase);
         ClaseBean claseBean = ClaseBean.transformToBean(clase);
         claseBean.setPeriodoAcademico(PeriodoAcademicoBean.transformToBean(clase.getPeriodoAcademico()));
         claseBean.setSeccion(SeccionBean.transformToBean(clase.getSeccion()));

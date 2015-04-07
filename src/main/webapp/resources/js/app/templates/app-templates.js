@@ -25,6 +25,7 @@ define(function (require) {
 		// Clases
 		clasesTemplate: require('tpl!templates/html/app-clases.tpl'),
 		clasesListTemplate: require('tpl!templates/html/app-claseslist.tpl'),
+		clasesItemListTemplate: require('tpl!templates/html/app-clasesitemlist.tpl'),
 		
 		// Monitoreos
 		fichaMonitoreoListTemplate: require('tpl!templates/html/app-fichamonitoreolist.tpl'),

@@ -10,6 +10,7 @@ define(['marionette'], function (Marionette) {
 			'config/grado': 'showGradoView',
 			'config/seccion': 'showSeccionView',
 			'config/clases': 'showClasesView',
+			'config/clases/:id': 'showClaseFormView',
 			'config/fichamonitoreo': 'showFichaDeMonitoreoListConfigView',
 			'config/newfichamonitoreo': 'showNewFichaDeMonitoreoConfigView',
 			'config/cargasiagie': 'showCargaSiagieFormView'
